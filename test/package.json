@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "lib-pareto-filesystem": "^0.1.2",
+    "pareto-core-exe": "^0.3.0",
+    "pareto-core-lib": "^0.4.0",
+    "res-pareto-filesystem": "^0.21.0",
+    "res-pareto-https": "^0.15.0",
+    "res-pareto-process": "^0.3.0",
+    "res-pareto-ugly-stuff": "^0.2.0"
+  }
+}

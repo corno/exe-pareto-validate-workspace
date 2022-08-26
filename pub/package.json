@@ -1,0 +1,39 @@
+{
+  "dependencies": {
+    "api-pareto-handledfilesystem": "^0.2.0",
+    "pareto-core-async": "^0.2.0",
+    "pareto-core-exe": "^0.3.0",
+    "pareto-core-resolve": "^0.1.0",
+    "pareto-core-state": "^0.4.0",
+    "res-pareto-filesystem": "^0.21.0",
+    "res-pareto-https": "^0.15.0",
+    "res-pareto-process": "^0.3.0",
+    "res-pareto-ugly-stuff": "^0.2.0"
+  },
+  "version": "0.15.0",
+  "author": "Corno",
+  "files": [
+    "dist",
+    "data"
+  ],
+  "keywords": [],
+  "main": "./dist/index.js",
+  "bugs": {
+    "url": "https://github.com/corno/pareto/issues"
+  },
+  "description": "",
+  "homepage": "https://github.com/corno/pareto#readme",
+  "license": "ISC",
+  "name": "exe-pareto-validate-workspace",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corno/exe-pareto-validate-workspace.git"
+  },
+  "types": "dist/index.d.ts",
+  "bin": {
+    "validate-workspace": "dist/bin/validate.js",
+    "generate-graphviz": "dist/bin/generateGraphviz.js"
+  },
+  "interface-fingerprint": "cd3fa99c9d8d5fc5a4b5a762fbf9d4ee04ac384d",
+  "content-fingerprint": "1fd6f3b62f2932faaa964dfa4d6376edc3ad8007"
+}
