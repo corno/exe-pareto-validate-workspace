@@ -1,14 +1,16 @@
 {
   "dependencies": {
-    "api-pareto-handledfilesystem": "^0.2.0",
-    "pareto-core-async": "^0.2.0",
-    "pareto-core-exe": "^0.3.0",
-    "pareto-core-resolve": "^0.1.0",
-    "pareto-core-state": "^0.4.0",
-    "res-pareto-filesystem": "^0.21.0",
-    "res-pareto-https": "^0.15.0",
-    "res-pareto-process": "^0.3.0",
-    "res-pareto-ugly-stuff": "^0.2.0"
+    "lib-pareto-exe": "^0.2.3",
+    "pareto-core-async": "^0.3.0",
+    "pareto-core-exe": "^0.8.0",
+    "pareto-core-lib": "^0.8.0",
+    "pareto-core-raw": "^0.2.0",
+    "pareto-core-resolve": "^0.2.0",
+    "pareto-core-state": "^0.6.0",
+    "res-pareto-filesystem": "^0.23.0",
+    "res-pareto-https": "^0.18.0",
+    "res-pareto-process": "^0.5.0",
+    "res-pareto-ugly-stuff": "^0.5.0"
   },
   "version": "0.15.0",
   "author": "Corno",
@@ -34,6 +36,6 @@
     "validate-workspace": "dist/bin/validate.js",
     "generate-graphviz": "dist/bin/generateGraphviz.js"
   },
-  "interface-fingerprint": "cd3fa99c9d8d5fc5a4b5a762fbf9d4ee04ac384d",
-  "content-fingerprint": "1fd6f3b62f2932faaa964dfa4d6376edc3ad8007"
+  "interface-fingerprint": "9f4598132f8981105a9219b939ffcbf6160da6db",
+  "content-fingerprint": "83bcb6610be036bb203019b33408e51a33fd352d"
 }

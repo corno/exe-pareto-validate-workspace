@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import * as pl from "pareto-core-lib"
+import * as pa from "pareto-core-async"
 
 import * as pub from "../../../pub"
 import * as move from "../../../pub/dist/move"
@@ -13,87 +14,95 @@ import * as process from "res-pareto-process"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 
 
-pb.runProgram(($$) => {
+pb.runProgram(($, $i, $d) => {
 
     const rootDir = "../../../pareto"
 
-    if (rootDir === undefined) {
-        pl.panic("Missing param")
-    }
-
-    pub.getWorkspaceData(
-        {
-            rootDir: rootDir
-        },
-        {
-            error: (msg) => {
-                pb.createStdErr().write(msg)
-                pb.createStdErr().write("\n")
-            }
-        },
-        {
-            processCall: process.call,
-            readDirectory: move.createReadHandledDirectory(
+    $d.startAsync(
+        pa.processValue(
+            pub.getWorkspaceData(
                 {
-                    onError: ($) => {
-                        pl.logDebugMessage(`${fsLib.createReadDirErrorMessage($.error)} @ ${$.path}`)
+                    rootDir: rootDir
+                },
+                {
+                    error: (msg) => {
+                        $i.stderr.write(msg)
+                        $i.stderr.write("\n")
                     }
                 },
                 {
-                    readDirectory: fsRes.readDirectory
+                    processCall: process.call,
+                    readDirectory: move.createReadHandledDirectory(
+                        {
+                            onError: ($) => {
+                                pl.logDebugMessage(`${fsLib.createReadDirErrorMessage($.error)} @ ${$.path}`)
+                            }
+                        },
+                        {
+                            readDirectory: fsRes.readDirectory
+                        }
+                    ),
+                    readFile: move.createReadHandledFile(
+                        {
+                            onError: ($) => {
+                                pl.logDebugMessage(`${fsLib.createReadFileErrorMessage($.error)} @ ${$.path}`)
+                            }
+                        },
+                        {
+                            readFile: fsRes.readFile
+                        }
+                    ),
+                    registryCache: pub.createRegistryCache(
+                        {
+                            error: pl.logDebugMessage
+                        },
+                        {
+                            httpsResource: move.createHTTPSResource(
+                                pub.registryData,
+                                {
+                                    onError: () => {
+                                        pl.logDebugMessage("IMPLEMENT HTTPS ERROR")
+                                    }
+                                }
+                            ),
+                            JSONParse: uglyStuff.JSONParse,
+
+                        }
+                    ),
+                    jsonparse: uglyStuff.JSONParse,
+                    trimEnd: uglyStuff.trimEnd,
                 }
-            ),
-            readFile: move.createReadHandledFile(
-                {
-                    onError: ($) => {
-                        pl.logDebugMessage(`${fsLib.createReadFileErrorMessage($.error)} @ ${$.path}`)
+            ), (res) => {
+                const overview = pub.transform(res)
+                pub.reportProjects(
+                    overview,
+                    {
+                        log: (msg) => {
+                            $i.stdout.write(msg)
+                            $i.stdout.write("\n")
+                        }
+                    },
+                    {
+                        arrayIncludes: uglyStuff.includes
                     }
-                },
-                {
-                    readFile: fsRes.readFile
-                }
-            ),
-            registryCache: pub.createRegistryCache(
-                {
-                    error: pl.logDebugMessage
-                },
-                {
-                    httpsCall: move.httpCall,
-                    JSONParse: uglyStuff.JSONParse,
+                )
 
-                }
-            ),
-            jsonparse: uglyStuff.JSONParse,
-            trimEnd: uglyStuff.trimEnd,
-        }
-    ).execute((res) => {
-        const overview = pub.transform(res)
-        pub.reportProjects(
-            overview,
-            {
-                log: (msg) => {
-                    pb.createStdOut().write(msg)
-                    pb.createStdOut().write("\n")
-                }
-            },
-            {
-                arrayIncludes: uglyStuff.includes
+                pub.reportGraphviz(
+                    overview,
+                    {
+                        log: (msg) => {
+                            $i.stdout.write(msg)
+                            $i.stdout.write("\n")
+                        }
+                    },
+                    {
+                        substr: uglyStuff.substr,
+                        max: uglyStuff.max,
+                    }
+                )
             }
-        )
 
-        pub.reportGraphviz(
-            overview,
-            {
-                log: (msg) => {
-                    pb.createStdOut().write(msg)
-                    pb.createStdOut().write("\n")
-                }
-            },
-            {
-                substr: uglyStuff.substr,
-                strLen: uglyStuff.stringLength,
-            }
         )
-    })
+    )
 
 })

@@ -6,11 +6,74 @@ import * as pr from "pareto-core-resolve"
 import * as pw from "pareto-core-raw"
 
 import * as inf from "../interface"
+import { Overview_Project } from "../interface"
 
 
-export const reportGraphviz: inf.ReportGraphviz = (
-    $, $i, $d
-) => {
+function sortAlphabetically(a: string, b: string): boolean {
+    return a > b
+}
+
+
+
+export const reportGraphviz: inf.ReportGraphviz = ($, $i, $d) => {
+    const projects = $.projects
+
+    const buckets: { [key: string]: { [key: number]: pm.ArrayBuilder<string> } } = {}
+
+    $.projects.forEach(sortAlphabetically, (project, key) => {
+        const projectName = key
+        const projectType = $d.substr(key, 0, 3)
+        if (buckets[projectType] === undefined) {
+            buckets[projectType] = {}
+        }
+        const typeBucket = buckets[projectType]
+        function getDepth(project: Overview_Project): number {
+            if (projectType === "res") {
+                return 0
+            } else {
+                const res = project.parts.reduce<number>(
+                    0,
+                    (current, $, key) => {
+                        if (key !== "pub") {
+                            return current
+                        }
+                        return $.dependencies.reduce(
+                            current,
+                            (current, $, key) => {
+                                //pl.logDebugMessage(`${projectName}=>${key}`)
+
+                                let thisDepth = 0
+                                pr.getEntry(
+                                    projects,
+                                    key,
+                                    ($) => {
+                                        const depType = $d.substr(key, 0, 3)
+                                        //pl.logDebugMessage(`>>>>> ${depType} ${projectType}`)
+                                        if (depType === projectType) {
+                                            //pl.logDebugMessage("HIERO2<<<<<<<<<<<<<<<<<<<<<<<<")
+
+                                            thisDepth = getDepth($) + 1
+                                        }
+                                    },
+                                    () => {
+
+                                    }
+                                )
+
+                                return $d.max(current, thisDepth)
+                            },
+                        )
+                    },
+                )
+                return res
+            }
+        }
+        const depth = getDepth(project)
+        if (typeBucket[depth] === undefined) {
+            typeBucket[depth] = pm.createArrayBuilder()
+        }
+        typeBucket[depth].push(key)
+    })
 
 
     type ProjectType =
@@ -38,53 +101,58 @@ export const reportGraphviz: inf.ReportGraphviz = (
     $i.log(`digraph G {`)
     $i.log(`\trankdir="LR"`)
 
-    const includedNodes = pm.createArrayBuilder<string>()
-
-    $.projects.forEach((a, b) => false, (project, key) => {
-        const projectKey = key
-        project.parts.forEach((a, b) => false, (part, key) => {
-            if (part.isPublic) {
-                includedNodes.push(`${projectKey}`)
-            }
-        })
-    })
-    let clusterCounter = 0
-
     function doCategory(name: string) {
 
-        $i.log(`\tsubgraph cluster_${clusterCounter++} {`)
-
-        $.projects.forEach((a, b) => false, (project, key) => {
+        $.projects.forEach(sortAlphabetically, (project, key) => {
             const projectKey = key
             if (getType(key)[0] !== name) {
                 return
             }
-            $i.log(`\t\tsubgraph cluster_${clusterCounter++} {`)
-            if (!project.isClean) {
-                $i.log(`\t\t\tgraph[color="red"]`)
+
+            const projectType = getType(projectKey)
+            function getShape(type: ProjectType): string {
+                switch (type[0]) {
+                    case "api":
+                        return pl.cc(type[1], ($) => {
+                            return "parallelogram"
+                        })
+                    case "exe":
+                        return pl.cc(type[1], ($) => {
+                            return "parallelogram"
+                        })
+                    case "lib":
+                        return pl.cc(type[1], ($) => {
+                            return "box"
+                        })
+                    case "res":
+                        return pl.cc(type[1], ($) => {
+                            return "diamond"
+                        })
+                    default: return pl.au(type[0])
+                }
             }
-            project.parts.forEach((a, b) => false, (part, key) => {
+
+
+            //`color="red", penwidth=3` : `color="green"`
+            project.parts.forEach(sortAlphabetically, (part, key) => {
                 if (part.isPublic) {
-                    $i.log(`\t\t\t"${projectKey}" [ ${part.status[0] !== "clean" || !part.dependenciesClean ? `color="red", penwidth=3` : `color="green"`} ]`)
+                    $i.log(`\t"${projectKey}" [ ${project.isClean ? `color="green"`: ` color="red", penwidth=3`} ${part.status[0] !== "clean" || !part.dependenciesClean ? `fillcolor="red", style="filled"` : ``} shape="${getShape(projectType)}" ]`)
                 }
             })
-            $i.log(`\t\t}`)
         })
 
-        $i.log(`\t}`)
     }
-    doCategory("bin")
+    doCategory("exe")
     doCategory("res")
     doCategory("lib")
     doCategory("api")
-    const projects = $.projects
-    $.projects.forEach((a, b) => false, (project, key) => {
+    $.projects.forEach(sortAlphabetically, (project, key) => {
         const projectKey = key
-        const projectType = getType(projectKey)
+
+        const projectType = getType(key)
 
 
-        project.parts.forEach((a, b) => false, (part, key) => {
-            const partKey = key
+        project.parts.forEach(sortAlphabetically, (part, key) => {
 
             if (part.isPublic) {
                 function doDependencies($: pt.Dictionary<inf.Overview_Dependency>) {
@@ -102,14 +170,14 @@ export const reportGraphviz: inf.ReportGraphviz = (
                                     return
                                 }
                                 const core_libs = pw.wrapRawDictionary({
-
-                                    "pareto-core-types": null,
+                                    "pareto-core-async": null,
+                                    "pareto-core-exe": null,
+                                    "pareto-core-lib": null,
+                                    "pareto-core-raw": null,
+                                    "pareto-core-resolve": null,
                                     "pareto-core-state": null,
                                     "pareto-core-tostring": null,
-                                    "pareto-core-exe": null,
-                                    "pareto-core-async": null,
-                                    "pareto-core-lib": null,
-                                    "pareto-core-resolve": null,
+                                    "pareto-core-types": null,
                                 })
 
                                 pr.getEntry(
@@ -133,6 +201,15 @@ export const reportGraphviz: inf.ReportGraphviz = (
                 doDependencies(part.dependencies)
                 doDependencies(part.devDependencies)
             }
+        })
+    })
+    pw.wrapRawDictionary(buckets).forEach(sortAlphabetically, ($, key) => {
+        pw.wrapRawDictionary($).forEach(sortAlphabetically, ($, key) => {
+            $i.log(`\t{ rank=same`)
+            $.getArray().forEach(($) => {
+                $i.log(`\t\t"${$}"`)
+            })
+            $i.log(`\t}`)
         })
     })
     $i.log(`}`)

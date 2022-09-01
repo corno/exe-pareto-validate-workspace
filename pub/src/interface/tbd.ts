@@ -3,15 +3,10 @@ import * as hfs from "api-pareto-handledfilesystem"
 import * as processAPI from "api-pareto-process"
 import * as pa from "pareto-core-async" //shouldn't be included in an interface
 import { Workspace, RemoteData, Project } from "./types/types"
-import * as https from "api-pareto-https"
 import * as uglyStuff from "api-pareto-ugly-stuff"
 import { Overview_Workspace } from "./types/overview"
 import { GetData_Interfaces } from "../imp/getProjectData"
-
-export type HTTPCall = (
-    $: https.CreateHTTPSResource_Data
-) => pt.AsyncValue<string>
-
+import { HTTPSResource } from "../move"
 
 export type GetData_Dependencies = {
     readDirectory: hfs.Directory,
@@ -48,7 +43,7 @@ export type CreateRegistryCache = (
         // error: (message: string) => void,
     },
     $d: {
-        httpsCall: HTTPCall,
+        httpsResource: HTTPSResource,
         JSONParse: uglyStuff.JSONParse
     }
 ) => pa.Cache<RemoteData | null>
@@ -59,8 +54,8 @@ export type ReportGraphviz = (
         log: (message: string) => void
     },
     $d: {
-        strLen: uglyStuff.StringLength
         substr: uglyStuff.SubStr
+        max: uglyStuff.Max
     }
 ) => void
 

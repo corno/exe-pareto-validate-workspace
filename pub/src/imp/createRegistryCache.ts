@@ -7,15 +7,13 @@ import * as api from "../interface"
 export const createRegistryCache: api.CreateRegistryCache = (
     $i, $d
 ) => {
-
     return pa.createCache(
         (key) => {
             let hasError = false
             return pa.rewrite(
-                $d.httpsCall(
+                $d.httpsResource.get(
                     {
-                        hostName: 'registry.npmjs.org',
-                        contextPath: `/${key}`
+                        id: key
                     }
                 ),
                 (data) => {

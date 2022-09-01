@@ -30,8 +30,6 @@ export const transform: api.Transform = ($) => {
                         status: ["missing package", {}],
                         version: null,
                         contentFingerprint: null,
-                        //isClean: false,
-                        //isPublic: isPublic,
                     }
                 }
                 function processDeps(deps: pt.Dictionary<api.Depencency>): pt.Dictionary<api.Overview_Dependency> {
@@ -68,6 +66,13 @@ export const transform: api.Transform = ($) => {
                         return ["clean", {}]
                     }
                 })()
+
+                const dependenciesClean =
+                    deps.reduce<boolean>(true, (current, $) => $.status[0] === "clean" && current) &&
+                    devDeps.reduce<boolean>(true, (current, $) => $.status[0] === "clean" && current)
+                if (!dependenciesClean) {
+                    hasDirtyParts = true
+                }
                 if (status[0] !== "clean") {
                     hasDirtyParts = true
                 }
@@ -78,9 +83,7 @@ export const transform: api.Transform = ($) => {
                     status: status,
                     version: part.packageData.version,
                     contentFingerprint: part.packageData.contentFingerprint,
-                    dependenciesClean:
-                    deps.reduce<boolean>(($, current) => $.status[0] === "clean" && current, true) &&
-                    devDeps.reduce<boolean>(($, current) => $.status[0] === "clean" && current, true)
+                    dependenciesClean: dependenciesClean
                 }
 
             }
