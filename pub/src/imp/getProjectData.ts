@@ -33,7 +33,6 @@ export const getProjectData: api.GetProjectData = (
                 {
                     path: [$.projectDir]
                 },
-                {}
             ),
             ($): pt.AsyncValue<pt.Dictionary<api.Part>> => {
                 return pa.dictionary(
@@ -58,7 +57,6 @@ export const getProjectData: api.GetProjectData = (
                                 {
                                     path: [$.path, `package.json`],
                                 },
-                                {}
                             ),
                             ($): pt.AsyncValue<Part> => {
                                 const pkg = $d.jsonparse($)

@@ -14,9 +14,6 @@ export const getWorkspaceData: api.GetWorkspaceData = (
             {
                 path: $.rootDir
             },
-            {
-
-            }
         ),
         (result) => {
             return pa.rewrite(

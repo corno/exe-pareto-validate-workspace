@@ -1,17 +1,19 @@
 import * as pt from "pareto-core-types"
-import * as hfs from "api-pareto-handledfilesystem"
-import * as processAPI from "api-pareto-process"
-import * as pa from "pareto-core-async" //shouldn't be included in an interface
-import { Workspace, RemoteData, Project } from "./types/types"
+import * as pa from "pareto-core-async"
+
+import * as process from "api-pareto-process"
 import * as uglyStuff from "api-pareto-ugly-stuff"
+import * as fs from "lib-pareto-filesystem"
+
+import { Workspace, RemoteData, Project } from "./types/types"
 import { Overview_Workspace } from "./types/overview"
 import { GetData_Interfaces } from "../imp/getProjectData"
 import { HTTPSResource } from "../move"
 
 export type GetData_Dependencies = {
-    readDirectory: hfs.Directory,
-    readFile: hfs.File,
-    processCall: processAPI.Call,
+    readDirectory: fs.ReadDirectoryOrAbort,
+    readFile: fs.ReadFileOrAbort,
+    processCall: process.Call,
     registryCache: pa.Cache<RemoteData | null>
     trimEnd: uglyStuff.TrimEnd
     jsonparse: uglyStuff.JSONParse
