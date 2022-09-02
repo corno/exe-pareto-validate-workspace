@@ -5,13 +5,14 @@ import * as pb from "pareto-core-exe"
 import * as pa from "pareto-core-async"
 
 import * as fs from "res-pareto-filesystem"
+import * as fsLib from "lib-pareto-filesystem"
 import * as process from "res-pareto-process"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 
 import * as imp from "../imp"
-import * as move from "../move"
 import { registryData } from "../data/registryData"
 import * as exeLib from "lib-pareto-exe"
+import { createHTTPSResource } from "../imp/move/httpsCall"
 
 pb.runProgram(($, $i, $d) => {
 
@@ -37,17 +38,17 @@ pb.runProgram(($, $i, $d) => {
                             },
                             {
                                 processCall: process.call,
-                                readDirectory: move.createReadHandledDirectory(
+                                readDirectory: fsLib.createReadDirectoryOrAbort(
                                     {
                                         onError: ($) => {
-                                            pl.logDebugMessage("@@@@@")
+                                            pl.logDebugMessage("READDIR ERROR")
                                         }
                                     },
                                     {
                                         readDirectory: fs.readDirectory
                                     }
                                 ),
-                                readFile: move.createReadHandledFile(
+                                readFile: fsLib.createReadFileOrAbort(
                                     {
                                         onError: ($) => {
                                             pl.logDebugMessage("@@@@@")
@@ -62,7 +63,7 @@ pb.runProgram(($, $i, $d) => {
                                         error: pl.logDebugMessage
                                     },
                                     {
-                                        httpsResource: move.createHTTPSResource(
+                                        httpsResource: createHTTPSResource(
                                             registryData,
                                             {
                                                 onError: () => {

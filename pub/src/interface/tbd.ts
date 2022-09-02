@@ -8,7 +8,7 @@ import * as fs from "lib-pareto-filesystem"
 import { Workspace, RemoteData, Project } from "./types/types"
 import { Overview_Workspace } from "./types/overview"
 import { GetData_Interfaces } from "../imp/getProjectData"
-import { HTTPSResource } from "../move"
+import { HTTPSResource } from "../imp/move/httpsCall"
 
 export type GetData_Dependencies = {
     readDirectory: fs.ReadDirectoryOrAbort,
