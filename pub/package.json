@@ -13,7 +13,7 @@
     "res-pareto-process": "^0.5.0",
     "res-pareto-ugly-stuff": "^0.5.0"
   },
-  "version": "0.16.1",
+  "version": "0.17.0",
   "author": "Corno",
   "files": [
     "dist",
