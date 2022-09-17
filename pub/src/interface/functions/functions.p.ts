@@ -1,12 +1,11 @@
 import * as pt from "pareto-core-types"
-import * as pa from "pareto-core-async"
 
 import * as uglyStuff from "api-pareto-ugly-stuff"
 
-import { TWorkspace, TRemoteData, TProject } from "../types/types"
-import { TOverview_Workspace } from "../types/overview"
-import { DGetData_Dependencies, DReportGraphvizDependencies, DReportProjectDependencies } from "../dependencies/x"
-import { XHTTPSResource } from "../../modules/httsp"
+import { TWorkspace, TRemoteData, TProject } from "../types/types.p"
+import { TOverview_Workspace } from "../types/overview.p"
+import { DGetData_Dependencies, DReportGraphvizDependencies, DReportProjectDependencies } from "../dependencies/dependencies.p"
+import { FHTTPSResource } from "../../modules/httsp"
 
 export type FGetWorkspaceData = (
     $: {
@@ -35,8 +34,8 @@ export type FCreateRegistryCache = (
         // error: (message: string) => void,
     },
     $d: {
-        readonly "httpsResource": XHTTPSResource,
-        readonly "JSONParse": uglyStuff.JSONParse
+        readonly "httpsResource": FHTTPSResource,
+        readonly "JSONParse": uglyStuff.FJSONParse
     }
 ) => pa.Cache<TRemoteData | null>
 

@@ -104,12 +104,7 @@ export const f_createGetTestset: api.FCreateGetTestset = ($d) => {
     
         //     )
         // )
-        const builder = pm.createDictionaryBuilder<test.TTestElement>(
-            ["ignore", null],
-            () => {
-                pl.panic("duplicate key")
-            }
-        )
+        const builder = pm.createUnsafeDictionaryBuilder<test.TTestElement>( )
         function createTest(name: string, actual: string, expected: string) {
             builder.add(name, {
                 type: ["test", {

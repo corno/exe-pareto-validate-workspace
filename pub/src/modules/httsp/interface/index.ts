@@ -1,1 +1,1 @@
-export * from "./algorithms/CreateHTTPSResource"
+export * from "./functions/CreateHTTPSResource"

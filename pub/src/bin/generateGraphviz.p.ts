@@ -9,7 +9,7 @@ import * as fsLib from "lib-pareto-filesystem"
 import * as process from "res-pareto-process"
 import * as uglyStuff from "res-pareto-ugly-stuff"
 
-import * as imp from "../imp"
+import * as imp from "../implementation"
 import { registryData } from "../data/registryData"
 import * as exeLib from "lib-pareto-exe"
 import { reportGraphvizDependencies } from "../dependencies/reportGraphviz"

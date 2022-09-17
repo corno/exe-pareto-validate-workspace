@@ -4,25 +4,25 @@ import * as collation from "api-pareto-collation"
 import * as process from "api-pareto-process"
 import * as fs from "lib-pareto-filesystem"
 
-//export type FFirst3Characters = ($: string) => string
+export type FFirst3Characters = ($: string) => string
 
 export type DGetData_Dependencies = {
-    readonly readDirectory: fs.ReadDirectoryOrAbort,
-    readonly readFile: fs.ReadFileOrAbort,
-    readonly processCall: process.Call,
+    readonly readDirectory: fs.FReadDirectoryOrAbort,
+    readonly readFile: fs.FReadFileOrAbort,
+    readonly processCall: process.FCall,
     //readonly registryCache: pa.Cache<TRemoteData | null>
-    readonly trimEnd: uglyStuff.TrimEnd
-    readonly jsonparse: uglyStuff.JSONParse
+    readonly trimEnd: uglyStuff.FTrimEnd
+    readonly jsonparse: uglyStuff.FJSONParse
 }
 
 export type DReportGraphvizDependencies = {
     readonly first3Characters: FFirst3Characters
-    readonly sortedForEach: collation.XSortedForEach
+    readonly sortedForEach: collation.FSortedForEach
     readonly dictionaryMaxOrZero: arithmetic.FDictionaryMaxOrZero
 }
 
 
 export type DReportProjectDependencies = {
-    readonly arrayIncludes: uglyStuff.Includes
-    readonly sortedForEach: collation.XSortedForEach
+    readonly arrayIncludes: uglyStuff.FIncludes
+    readonly sortedForEach: collation.FSortedForEach
 }
