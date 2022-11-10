@@ -1,21 +1,29 @@
 import * as pt from "pareto-core-types"
+import * as async from "api-pareto-async"
 
-import * as uglyStuff from "api-pareto-ugly-stuff"
 
 import { TWorkspace, TRemoteData, TProject } from "../types/types.p"
 import { TOverview_Workspace } from "../types/overview.p"
-import { DGetData_Dependencies, DReportGraphvizDependencies, DReportProjectDependencies } from "../dependencies/dependencies.p"
-import { FHTTPSResource } from "../../modules/httsp"
 
-export type FGetWorkspaceData = (
+import * as https from "api-pareto-https"
+import * as main from "api-pareto-main"
+import * as exe from "lib-pareto-exe"
+
+export type FGitIsClean = (
     $: {
-        readonly "rootDir": string,
+        readonly "directory": string,
     },
+) => pt.AsyncValue<boolean>
+
+
+export type FCreateErrorHandledGitIsClean = (
     $i: {
-        readonly "error": ($: string) => void,
+        readonly error: ($:
+            | ["unknown", string]
+        ) => void,
     },
-    $d: DGetData_Dependencies
-) => pt.AsyncValue<TWorkspace>
+) => FGitIsClean
+
 
 export type FGetProjectData = (
     $: {
@@ -25,33 +33,53 @@ export type FGetProjectData = (
     $i: {
         readonly error: ($: string) => void,
     },
-    $d: DGetData_Dependencies,
 ) => pt.AsyncValue<TProject>
+
+export type FGetWorkspaceData = (
+    $: {
+        readonly "rootDir": string,
+    },
+    $i: {
+        readonly "error": ($: string) => void,
+    },
+) => pt.AsyncValue<TWorkspace>
+
 
 
 export type FCreateRegistryCache = (
     $i: {
         // error: (message: string) => void,
     },
-    $d: {
-        readonly "httpsResource": FHTTPSResource,
-        readonly "JSONParse": uglyStuff.FJSONParse
+) => async.FGetAsyncData<string, TRemoteData | null>
+
+
+export type FGenerateGraphviz = (
+    $: {
+        readonly "arguments": main.TArguments
+        readonly "registryData": https.THostConfiguration
+    },
+    $i: {
+        readonly "log": exe.ILog
+        readonly "logError": exe.ILog
     }
-) => pa.Cache<TRemoteData | null>
+) => void
 
 export type PReportGraphviz = (
     $: TOverview_Workspace,
     $i: {
         readonly "log": ($: string) => void
     },
-    $d: DReportGraphvizDependencies
 ) => void
 
 
 export type PReportProjects = (
-    $: TOverview_Workspace,
+    $: {
+        readonly "workspace": TOverview_Workspace
+    },
     $i: {
         readonly "log": ($: string) => void
     },
-    $d: DReportProjectDependencies
 ) => void
+
+
+export type FTransform = ($: TWorkspace) => TOverview_Workspace

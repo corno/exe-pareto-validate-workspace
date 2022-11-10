@@ -1,8 +1,8 @@
 import * as pt from "pareto-core-types"
 
 export type TOverview_Workspace = {
-    readonly "red": string
-    readonly "reset": string
+    // readonly "red": string
+    // readonly "reset": string
     readonly "projects": pt.Dictionary<TOverview_Project>
 }
 

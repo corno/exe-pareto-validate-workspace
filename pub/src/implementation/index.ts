@@ -1,8 +1,17 @@
 
 
-export * from "./public/reportProjects.p"
+export * from "./public/createRegistryCache.p"
+export * from "./public/generateGraphviz.p"
+export * from "./public/getProjectData.p"
+export * from "./public/getWorkspaceData.p"
 export * from "./public/reportGraphviz.p"
-// export * from "./private/getWorkspaceData"
-// export * from "./private/createRegistryCache"
-// export * from "./private/transform"
+export * from "./public/reportProjects.p"
+export * from "./public/transform.p"
+export * from "./public/gitIsClean.p"
+
+
+export * from "./linked/generateGraphviz.p"
+export * from "./linked/gitIsClean.p"
+export * from "./linked/reportGraphviz.p"
+export * from "./linked/reportProject.p"
 
