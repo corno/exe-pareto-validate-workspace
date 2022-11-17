@@ -78,6 +78,7 @@ export function f_reportGraphviz(
             | ["res", null]
             | ["lib", null]
             | ["api", null]
+            | ["unknown", string]
 
         function getType(name: string): ProjectType {
             const typeAsString = $d.first3Characters(name)
@@ -90,7 +91,7 @@ export function f_reportGraphviz(
                     return ["lib", null]
                 case "res":
                     return ["res", null]
-                default: pl.panic(`unexpected project type: ${typeAsString} in ${name}`)
+                default: return ["unknown", typeAsString]
             }
         }
 
@@ -123,6 +124,10 @@ export function f_reportGraphviz(
                                 return "box"
                             })
                         case "res":
+                            return pl.cc(type[1], ($) => {
+                                return "diamond"
+                            })
+                        case "unknown":
                             return pl.cc(type[1], ($) => {
                                 return "diamond"
                             })

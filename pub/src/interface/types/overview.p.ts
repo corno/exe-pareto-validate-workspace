@@ -9,7 +9,7 @@ export type TOverview_Workspace = {
 
 export type TOverview_Project = {
     readonly "parts": pt.Dictionary<TOverview_Part>
-    readonly "gitDirty": boolean
+    readonly "gitIsClean": boolean
     readonly "isDirty": boolean
 }
 

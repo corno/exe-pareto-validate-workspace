@@ -21,7 +21,7 @@ export function p_reportProjects(
         const config = $c
         $d.sortedForEach($.workspace.projects, ($) => {
             const projectKey = $.key
-            $i.log(`${$.key} ${$.value.gitDirty ? `${config.red}open gitchanges${config.reset}` : ""}`)
+            $i.log(`${$.key} ${$.value.gitIsClean ? "" : `${config.red}open gitchanges${config.reset}`}`)
             $d.sortedForEach($.value.parts, ($) => {
                 $i.log(`\t${$.key} ${$.value.version === null ? "" : $.value.version} ${$.value.contentFingerprint === null ? "" : $.value.contentFingerprint} ${$.value.status[0] === "clean" ? "" : `${config.red}${$.value.status[0]}${config.reset}`}`)
                 $d.sortedForEach($.value.dependencies, ($) => {

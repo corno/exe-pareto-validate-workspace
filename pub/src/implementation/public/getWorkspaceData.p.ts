@@ -12,7 +12,7 @@ export function f_getWorkspaceData(
     },
 ): api.FGetWorkspaceData {
     return (
-        $, $i
+        $
     ) => {
         return $d.readDirectory(
             {
@@ -24,8 +24,7 @@ export function f_getWorkspaceData(
                     {
                         name: key,
                         projectDir: $.path,
-                    },
-                    $i,
+                    }
                 )
             }).map(($) => {
                 return pl.asyncValue({

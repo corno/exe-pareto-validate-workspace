@@ -17,7 +17,24 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
 
         const rootDir = "../../../pareto"
 
-        pub.l_generateGraphviz
+        $a(
+            pub.l_getWorkspaceData()({
+                rootDir: [$.testDirectory, "../../.."]
+            }),
+            ($) => {
+                pub.l_reportProjects(
+                    {
+                        workspace: pub.f_transform()($)
+                    },
+                    {
+                        log: ($) => {
+                            pl.logDebugMessage($)
+                        }
+                    }
+                )
+            }
+        )
+
 
         $a(
             pub.l_gitIsClean(
@@ -45,14 +62,55 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
 
 
 
-        pub.f_transform()({
-            projects: pl.createEmptyDictionary()
+        const proj: pub.TProject = {
+            "gitIsClean": false,
+            "parts": pw.wrapRawDictionary({
+                "pub": {
+                    "packageData": {
+                        "name": null,
+                        "version": "XXX",
+                        "contentFingerprint": "XXX",
+                        "dependencies": pw.wrapRawDictionary({
+                            "BLA": {
+                                "remote": null,
+                                "version": "BAR"
+                            }
+                        }),
+                        "devDependencies": pw.wrapRawDictionary({}),
+                        "remote": null
+                    }
+                },
+                "test": {
+                    "packageData": {
+                        "name": null,
+                        "version": null,
+                        "contentFingerprint": null,
+                        "dependencies": pw.wrapRawDictionary({}),
+                        "devDependencies": pw.wrapRawDictionary({}),
+                        "remote": null
+                    }
+                }
+            })
+        }
+
+        const x = pub.f_transform()({
+            projects: pw.wrapRawDictionary({
+                "Y": proj,
+                "lib_Y": proj,
+            })
         })
 
-        // const proj: pub.TProject = {
-        //     gitDirty: false,
-        //     parts: 
-        // }
+        pub.l_reportGraphviz(
+            x,
+            {
+                // error: ($) => {
+                //     pl.logDebugMessage(`GV ERROR: ${$}`)
+                // },
+                log: ($) => {
+                    pl.logDebugMessage(`GV: ${$}`)
+                }
+            }
+        )
 
         pub.f_getProjectData(
             {
@@ -84,6 +142,8 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
                     return pl.asyncValue(null)
                 },
                 getPackage: ($) => {
+                    pl.logDebugMessage(`PACKAGE: ${$}`)
+
                     if ($ === "PUB") {
                         return pl.asyncValue({
                             //name: "XXX",
@@ -100,7 +160,6 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
 
                         })
                     }
-                    pl.logDebugMessage(`PACKAGE: ${$}`)
 
                     // $d.jsonParseStream<PKG>(
                     //     {
@@ -141,11 +200,11 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
                 name: "FOO_NAME",
                 projectDir: "FOO_DIR",
             },
-            {
-                error: () => {
+            // {
+            //     // error: () => {
 
-                }
-            }
+            //     // }
+            // }
         )._execute(($) => {
 
             function serialize<T>(left: T) {
@@ -197,7 +256,7 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
                 return uglyStuff.f_JSONStringify(toPOD(left))
             }
             pl.logDebugMessage(serialize<pub.TProject>($))
-            $.gitDirty
+            $.gitIsClean
             // $.parts.
         })
 

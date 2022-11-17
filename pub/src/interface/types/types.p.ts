@@ -5,7 +5,7 @@ export type TPart = {
 }
 
 export type TProject = {
-    readonly "gitDirty": boolean
+    readonly "gitIsClean": boolean
     readonly "parts": pt.Dictionary<TPart>
 }
 

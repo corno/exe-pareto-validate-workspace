@@ -12,12 +12,13 @@ import * as async from "api-pareto-async"
 
 export function f_generateGraphviz (
     $d: {
-        readDirectory: fsAPI.FReadDirectory
-        processCall: process.FCall
-        trimEnd: uglyStuff.FTrimEnd
-        JSONParseStream: uglyStuff.FJSONParseStream
-        createCache: async.FCreateCache
-        createAggregater: async.FCreateAggregater
+        // readDirectory: fsAPI.FReadDirectory
+        // processCall: process.FCall
+        // trimEnd: uglyStuff.FTrimEnd
+        // JSONParseStream: uglyStuff.FJSONParseStream
+        // createCache: async.FCreateCache
+        // createAggregater: async.FCreateAggregater
+        getWorkspaceData: api.FGetWorkspaceData
     },
     $a: pt.ProcessAsyncValue
 ): api.FGenerateGraphviz {

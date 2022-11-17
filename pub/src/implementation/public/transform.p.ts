@@ -105,11 +105,11 @@ export function f_transform(): api.FTransform {
 
                 return {
                     parts: parts,
-                    gitDirty: project.gitDirty,
+                    gitIsClean: project.gitIsClean,
                     isDirty:
                         anyEntry(parts.map(($) => $.dependenciesDirty))
                             ? true
-                            : project.gitDirty
+                            : project.gitIsClean
                 }
 
             })

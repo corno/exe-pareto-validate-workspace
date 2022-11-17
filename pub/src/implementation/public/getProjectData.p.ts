@@ -29,7 +29,7 @@ export function f_getProjectData(
         //readonly jsonParseStream: uglyStuff.FJSONParseStream
     }
 ): api.FGetProjectData {
-    return ($, $i) => {
+    return ($) => {
 
 
         return pl.tuple2<boolean, pt.Dictionary<api.TPart>, api.TProject>(
@@ -104,7 +104,7 @@ export function f_getProjectData(
             }),
             (tuple): api.TProject => {
                 const project: api.TProject = {
-                    gitDirty: tuple.first,
+                    gitIsClean: tuple.first,
                     parts: tuple.second
                 }
                 pr.getEntry(
@@ -114,7 +114,7 @@ export function f_getProjectData(
 
                     },
                     () => {
-                        $i.error(`missing pub`)
+                        pl.logDebugMessage(`missing pub`)
                         tuple.second.map(($, key) => {
                             pl.logDebugMessage(`>${key}`)
                         })

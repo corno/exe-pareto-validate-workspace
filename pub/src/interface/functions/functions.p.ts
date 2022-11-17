@@ -30,17 +30,22 @@ export type FGetProjectData = (
         readonly "name": string,
         readonly "projectDir": string,
     },
-    $i: {
-        readonly error: ($: string) => void,
-    },
+    // $i: {
+    //     readonly error: ($: string) => void,
+    // },
 ) => pt.AsyncValue<TProject>
+
+
+export type FCreateErrorHandledGetProjectData = (
+    $i: {
+        readonly error: ($: string
+        ) => void,
+    },
+) => FGetProjectData
 
 export type FGetWorkspaceData = (
     $: {
-        readonly "rootDir": string,
-    },
-    $i: {
-        readonly "error": ($: string) => void,
+        readonly "rootDir": pt.Nested<string>,
     },
 ) => pt.AsyncValue<TWorkspace>
 

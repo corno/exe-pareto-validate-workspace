@@ -14,7 +14,7 @@ import { l_generateGraphviz } from "../implementation/linked/generateGraphviz.p"
 
 
 pb.runProgram(($, $i) => {
-    l_generateGraphviz(
+    l_generateGraphviz()(
         {
             arguments: $.arguments,
             registryData: registryData,
