@@ -1,6 +1,5 @@
 interface Array<T> {
     [n: number]: T
-    push: ($: T) => void
 }
 interface Boolean { }
 interface CallableFunction { }
