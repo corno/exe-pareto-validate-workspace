@@ -14,6 +14,6 @@ export * from "./linked/generateGraphviz.p"
 export * from "./linked/gitIsClean.p"
 export * from "./linked/reportGraphviz.p"
 export * from "./linked/reportProject.p"
-export * from "./linked/getProjectData.p"
+// export * from "./linked/getProjectData.p"
 export * from "./linked/getWorkspaceData.p"
 

@@ -39,6 +39,6 @@
     "validate-workspace": "dist/bin/validate.js",
     "generate-graphviz": "dist/bin/generateGraphviz.js"
   },
-  "interface-fingerprint": "8f54e5c971d604c4872e2674491134dcb21716ee",
-  "content-fingerprint": "b39c027e03eb52031165018ff307fb19185f34ed"
+  "interface-fingerprint": "4b0cc3687011267dc484f6af1e05e8bf6cef057f",
+  "content-fingerprint": "6f9afba17cc48ccd01dee567b3e56367d887c09c"
 }

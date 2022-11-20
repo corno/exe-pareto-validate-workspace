@@ -1,38 +1,38 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
-import * as pb from "pareto-core-exe"
+// import * as pb from "pareto-core-exe"
 
-import * as exe from "lib-pareto-exe"
+// import * as exe from "lib-pareto-exe"
 
-// import { generateGraphviz } from "../implementation"
+// // import { generateGraphviz } from "../implementation"
 
-import { registryData } from "../data/registryData.p"
+// import { registryData } from "../data/registryData.p"
 
-const newline = "\n"
+// const newline = "\n"
 
-import { l_generateGraphviz } from "../implementation/linked/generateGraphviz.p"
+// import { l_generateGraphviz } from "../implementation/linked/generateGraphviz.p"
 
 
-pb.runProgram(($, $i) => {
-    l_generateGraphviz()(
-        {
-            arguments: $.arguments,
-            registryData: registryData,
-        },
-        {
-            log: exe.f_createLogger(
-                {
-                    newline: newline,
-                },
-                $i.stdout,
-            ),
-            logError: exe.f_createLogger(
-                {
-                    newline: newline,
-                },
-                $i.stderr,
-            ),
-        },
-    )
+// pb.runProgram(($, $i) => {
+//     l_generateGraphviz()(
+//         {
+//             arguments: $.arguments,
+//             registryData: registryData,
+//         },
+//         {
+//             log: exe.f_createLogger(
+//                 {
+//                     newline: newline,
+//                 },
+//                 $i.stdout,
+//             ),
+//             logError: exe.f_createLogger(
+//                 {
+//                     newline: newline,
+//                 },
+//                 $i.stderr,
+//             ),
+//         },
+//     )
 
-})
+// })

@@ -17,23 +17,23 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
 
         const rootDir = "../../../pareto"
 
-        $a(
-            pub.l_getWorkspaceData()({
-                rootDir: [$.testDirectory, "../../.."]
-            }),
-            ($) => {
-                pub.l_reportProjects(
-                    {
-                        workspace: pub.f_transform()($)
-                    },
-                    {
-                        log: ($) => {
-                            pl.logDebugMessage($)
-                        }
-                    }
-                )
-            }
-        )
+        // $a(
+        //     pub.l_getWorkspaceData()({
+        //         rootDir: [$.testDirectory, "../../.."]
+        //     }),
+        //     ($) => {
+        //         pub.l_reportProjects(
+        //             {
+        //                 workspace: pub.f_transform()($)
+        //             },
+        //             {
+        //                 log: ($) => {
+        //                     pl.logDebugMessage($)
+        //                 }
+        //             }
+        //         )
+        //     }
+        // )
 
 
         $a(
@@ -235,7 +235,7 @@ export const createGetTestset: api.FCreateGetTestset = ($, $d) => {
                         } else if (isArray(left)) {
                             const x: any[] = []
                             left.forEach(($) => {
-                                x.push(toPOD($))
+                                // x.push(toPOD($))
                             })
                             return x
                         } else {
