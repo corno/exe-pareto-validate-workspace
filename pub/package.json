@@ -2,11 +2,7 @@
   "dependencies": {
     "lib-pareto-exe": "^0.5.0",
     "lib-pareto-filesystem": "^0.6.0",
-    "pareto-core-exe": "^0.13.0",
-    "pareto-core-lib": "^0.13.0",
-    "pareto-core-raw": "^0.4.0",
-    "pareto-core-resolve": "^0.4.0",
-    "pareto-core-state": "^0.10.0",
+    "pareto-core": "^0.0.2",
     "res-pareto-arithmetic": "^0.4.0",
     "res-pareto-async": "^0.2.0",
     "res-pareto-collation": "^0.8.0",
@@ -39,6 +35,6 @@
     "validate-workspace": "dist/bin/validate.js",
     "generate-graphviz": "dist/bin/generateGraphviz.js"
   },
-  "interface-fingerprint": "64a7a99a4c47465bd1c14e098e26c01ad696d9b5",
-  "content-fingerprint": "a334b3a13983ac97ce554bd8a0ff46a6f4745636"
+  "interface-fingerprint": "ec62eb22b93deeb4579add205d200f327e89eff7",
+  "content-fingerprint": "9635b5b75b67d36b1fa565f72de3247030d32fe1"
 }
