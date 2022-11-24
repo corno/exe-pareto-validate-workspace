@@ -2,7 +2,7 @@
   "dependencies": {
     "lib-pareto-exe": "^0.5.0",
     "lib-pareto-filesystem": "^0.6.0",
-    "pareto-core": "^0.0.2",
+    "pareto-core": "^0.0.4",
     "res-pareto-arithmetic": "^0.4.0",
     "res-pareto-async": "^0.2.0",
     "res-pareto-collation": "^0.8.0",
