@@ -1,4 +1,4 @@
-import { p_reportProjects } from "../public/reportProjects.p";
+import { p_reportProjects } from "../../submodules/public/reportProjects.p";
 
 import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as collation from "res-pareto-collation"

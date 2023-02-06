@@ -1,8 +1,8 @@
-import { p_reportProjects } from "../public/reportProjects.p";
+import { p_reportProjects } from "../../submodules/public/reportProjects.p";
 
 import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as collation from "res-pareto-collation"
-import { f_createRegistryCache } from "../public/createRegistryCache.p";
+import { f_createRegistryCache } from "../../submodules/public/createRegistryCache.p";
 
 
 // export const l_createRegistryCache = f_createRegistryCache(

@@ -1,4 +1,4 @@
-import { f_reportGraphviz } from "../public/reportGraphviz.p";
+import { f_reportGraphviz } from "../../submodules/public/reportGraphviz.p";
 
 import * as uglyStuff from "res-pareto-ugly-stuff"
 import * as collation from "res-pareto-collation"
