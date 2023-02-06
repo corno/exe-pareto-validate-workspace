@@ -7,7 +7,7 @@ export * from "./public/getWorkspaceData.p"
 export * from "./public/reportGraphviz.p"
 export * from "./public/reportProjects.p"
 export * from "./public/transform.p"
-export * from "./public/gitIsClean.p"
+export * from "../submodules/git/implementations/createGitIsClean.p"
 
 
 export * from "./linked/generateGraphviz.p"
