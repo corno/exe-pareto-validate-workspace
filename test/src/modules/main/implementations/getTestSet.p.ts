@@ -1,7 +1,7 @@
-import * as pt from "pareto-core-types"
-import * as pl from "pareto-core-lib"
-import * as pm from "pareto-core-state"
-import * as pw from "pareto-core-raw"
+import * as pt from 'pareto-core-types'
+import * as pl from 'pareto-core-lib'
+import * as pm from 'pareto-core-state'
+import * as pw from 'pareto-core-raw'
 
 import * as api from "../api"
 import * as pub from "../../../../../pub"

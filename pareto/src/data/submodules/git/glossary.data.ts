@@ -7,26 +7,25 @@ import {
     reference,
     boolean,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pr.wrapRawDictionary
 
-export const $: mglossary.TGlossary = {
+export const $: mglossary.T.Glossary<string> = {
     'imports': d({
         "common": "glo-pareto-common",
     }),
     'parameters': d({}),
-    'templates': d({}),
-    'types': types({
-        "Error": taggedUnion({
+    'types': d({
+        "Error": type(taggedUnion({
             "unknown": string(),
-        }),
-        "GitIsCleanParameters": group({
+        })),
+        "GitIsCleanParameters": type(group({
             "directory": member(string()),
-        }),
+        })),
     }),
     'interfaces': d({
     }),

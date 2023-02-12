@@ -1,9 +1,9 @@
 
-import * as pl from "pareto-core-lib"
+import * as pl from 'pareto-core-lib'
 
 import * as api from "../../interface"
 import * as async from "api-pareto-async"
-import * as pt from "pareto-core-types"
+import * as pt from 'pareto-core-types'
 
 import * as uglyStuff from "api-pareto-ugly-stuff"
 import * as https from "api-pareto-https"

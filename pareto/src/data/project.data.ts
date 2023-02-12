@@ -7,7 +7,7 @@ const d = pr.wrapRawDictionary
 import { $ as api } from "./api.data"
 import { $ as git } from "./submodules/git/api.data"
 
-export const $: mproject.TProject = {
+export const $: mproject.T.Project = {
     'author': "Corno",
     'description': "validate the projects in a workspace; do they conform to the pareto standard and are their dependencies updated",
     'license': "ISC",

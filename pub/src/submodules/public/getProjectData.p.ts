@@ -1,9 +1,9 @@
 
 
-import * as pt from "pareto-core-types"
-import * as pl from "pareto-core-lib"
+import * as pt from 'pareto-core-types'
+import * as pl from 'pareto-core-lib'
 import * as pr from "pareto-core-resolve"
-import * as pw from "pareto-core-raw"
+import * as pw from 'pareto-core-raw'
 
 import * as api from "../../interface"
 import * as async from "api-pareto-async"

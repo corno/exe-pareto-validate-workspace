@@ -19,7 +19,7 @@ import { $ as glossary } from "./glossary.data"
 
 const d = pr.wrapRawDictionary
 
-export const $: mmoduleDefinition.TModuleDefinition = {
+export const $: mmoduleDefinition.T.ModuleDefinition = {
     'glossary': glossary,
     'api': {
         'imports': d({
@@ -30,8 +30,8 @@ export const $: mmoduleDefinition.TModuleDefinition = {
         'algorithms': d({
             "createGitIsClean": algorithm(definitionReference("GitIsClean"), constructor(null, {
                 "handleError": definitionReference("HandleError"),
-                "processCall": definitionReference("process", "Call"),
-                "trimEnd": definitionReference("string", "TrimEnd"),
+                "processCall": definitionReference("process", {}, "Call"),
+                "trimEnd": definitionReference("string", {}, "TrimEnd"),
             }))
         })
     },

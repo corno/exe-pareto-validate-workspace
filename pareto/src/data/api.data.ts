@@ -19,15 +19,15 @@ import { $ as glossary } from "./glossary.data"
 
 const d = pr.wrapRawDictionary
 
-export const $: mmoduleDefinition.TModuleDefinition = {
+export const $: mmoduleDefinition.T.ModuleDefinition = {
     'glossary': glossary,
     'api': {
         'imports': d({
             "main": "res-pareto-main",
         }),
         'algorithms': d({
-            "generateGraphviz": algorithm(definitionReference("main", "Main")),
-            "validateWorkspace": algorithm(definitionReference("main", "Main")),
+            "generateGraphviz": algorithm(definitionReference("main", {}, "Main")),
+            "validateWorkspace": algorithm(definitionReference("main", {}, "Main")),
         })
     },
 }

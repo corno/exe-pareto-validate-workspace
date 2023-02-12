@@ -1,4 +1,4 @@
-// import * as pl from "pareto-core-lib"
+// import * as pl from 'pareto-core-lib'
 // import { f_reportGraphviz } from "../public/reportGraphviz.p";
 
 // import * as uglyStuff from "res-pareto-ugly-stuff"
