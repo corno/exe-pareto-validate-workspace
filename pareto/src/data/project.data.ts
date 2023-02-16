@@ -12,7 +12,7 @@ export const $: mproject.T.Project = {
     'description': "validate the projects in a workspace; do they conform to the pareto standard and are their dependencies updated",
     'license': "ISC",
 
-    'pubdependencies': d({
+    'dependencies': d({
         "glo-pareto-common": {},
         "res-pareto-main": {},
         "res-pareto-process": {},
@@ -44,6 +44,13 @@ export const $: mproject.T.Project = {
         'test': {
             'dependencies': d({
             }),
+            'glossary': {
+                'functions': d({}),
+                'imports': d({}),
+                'parameters': d({}),
+                'types': d({}),
+                'interfaces': d({}),
+            },
         }
     }],
 }
