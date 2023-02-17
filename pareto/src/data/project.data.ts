@@ -6,6 +6,9 @@ const d = pd.wrapRawDictionary
 
 import { $ as api } from "./api.data"
 import { $ as git } from "./submodules/git/api.data"
+import { $ as graphviz } from "./submodules/graphviz/api.data"
+import { $ as overview } from "./submodules/overview/api.data"
+import { $ as data } from "./submodules/data/api.data"
 
 export const $: mproject.T.Project = {
     'author': "Corno",
@@ -16,7 +19,9 @@ export const $: mproject.T.Project = {
         "glo-pareto-common": {},
         "res-pareto-main": {},
         "res-pareto-process": {},
+        "res-pareto-foreach": {},
         "res-pareto-string": {},
+        "lib-fountain-pen": {},
         // "lib-pareto-exe": "^0.5.0",
         // "lib-pareto-filesystem": "^0.6.0",
         // "res-pareto-arithmetic": "^0.4.0",
@@ -33,9 +38,18 @@ export const $: mproject.T.Project = {
             'definition': api,
         },
         'submodules': d({
+            "data": {
+                'definition': data,
+            },
             "git": {
                 'definition': git,
-            }
+            },
+            "graphviz": {
+                'definition': graphviz,
+            },
+            "overview": {
+                'definition': overview,
+            },
         }),
         'executables': d({
             "generateGraphviz": {},

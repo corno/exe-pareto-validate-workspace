@@ -1,11 +1,17 @@
 import * as pt from 'pareto-core-types'
 import * as pl from 'pareto-core-lib'
 import * as pm from 'pareto-core-state'
-import * as pw from 'pareto-core-raw'
+import * as pd from 'pareto-core-data'
+
+
 
 import * as api from "../api"
 import * as pub from "../../../../../pub"
 
+import * as mgraphviz from "../../../../../pub/dist/submodules/graphviz"
+
+const d = pd.wrapRawDictionary
+const a = pd.wrapRawArray
 
 //import * as muglyStuff from "res-pareto-ugly-stuff"
 import * as mtest from "lib-pareto-test"
@@ -362,6 +368,48 @@ export const $$: api.CgetTestSet = ($) => {
     //         },
     //     },
     // )
+
+    const grapviz: mgraphviz.T.Graph = {
+        'type': ['digraph', {}],
+        'modifiers': {
+            'rankDir': ['LR', {}],
+        },
+        'nodes': d({
+            "A": {
+
+                'modifiers': {
+                    'fillColor': "black",
+                    'label': "FOO",
+                    'penWidth': 4,
+                    'shape': "diamond",
+                    'style': "foo",
+                }
+            },
+            "B": {
+
+                'modifiers': {
+                    'fillColor': "black",
+                    'label': "FOO",
+                    'penWidth': 4,
+                    'shape': "diamond",
+                    'style': "foo",
+                }
+            },
+        }),
+        'edges': a([
+            {
+                'from': "A",
+                'to': "B",
+            }
+        ]),
+    }
+
+    mgraphviz.$a.serialize({
+        'graph': grapviz,
+        'path': [$.testDirectory, "graphviz"]
+    })
+
+
     const builder = pm.createUnsafeDictionaryBuilder<mtest.T.TestElement>()
     function createTest(name: string, actual: string, expected: string) {
         builder.add(name, {

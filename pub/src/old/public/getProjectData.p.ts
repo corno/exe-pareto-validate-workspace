@@ -3,11 +3,9 @@
 // import * as pt from 'pareto-core-types'
 // import * as pl from 'pareto-core-lib'
 // import * as pr from "pareto-core-resolve"
-// import * as pw from 'pareto-core-raw'
 
-// import * as api from "../../interface"
+// import * as api from "../api"
 // import * as async from "api-pareto-async"
-// // import * as uglyStuff from "api-pareto-ugly-stuff"
 // import * as fsLib from "lib-pareto-filesystem"
 
 
