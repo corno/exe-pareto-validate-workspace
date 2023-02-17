@@ -1,6 +1,6 @@
 
 
-import * as fs from "res-pareto-filesystem"
+//import * as fs from "res-pareto-filesystem"
 // import * as async from "res-pareto-async"
 // import * as process from "res-pareto-process"
 // import * as uglyStuff from "res-pareto-ugly-stuff"
