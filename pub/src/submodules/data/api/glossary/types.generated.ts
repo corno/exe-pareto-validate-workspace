@@ -21,6 +21,56 @@ export namespace T {
         readonly 'version': string
     }
     
+    export namespace GetProjectDataConfig {
+        
+        export type name = string
+        
+        export type path = mcommon.T.Path
+    }
+    
+    export type GetProjectDataConfig = {
+        readonly 'name': string
+        readonly 'path': mcommon.T.Path
+    }
+    
+    export namespace OptionalRemoteData {
+        
+        export type O = T.RemoteData
+    }
+    
+    export type OptionalRemoteData = [ false ] | [ true, T.RemoteData]
+    
+    export namespace PackageData {
+        
+        export type content_mifingerprint = string
+        
+        export namespace dependencies {
+            
+            export type D = string
+        }
+        
+        export type dependencies = pt.Dictionary<string>
+        
+        export namespace devDependencies {
+            
+            export type D = string
+        }
+        
+        export type devDependencies = pt.Dictionary<string>
+        
+        export type name = string
+        
+        export type version = string
+    }
+    
+    export type PackageData = {
+        readonly 'content-fingerprint'?: string
+        readonly 'dependencies'?: pt.Dictionary<string>
+        readonly 'devDependencies'?: pt.Dictionary<string>
+        readonly 'name'?: string
+        readonly 'version'?: string
+    }
+    
     export namespace Project {
         
         export type git__is__clean = boolean

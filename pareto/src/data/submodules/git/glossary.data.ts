@@ -8,11 +8,11 @@ import {
     boolean,
     typeReference,
     dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
+} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
-const d = pd.wrapRawDictionary
+const d = pd.d
 
 export const $: mglossary.T.Glossary<string> = {
     'imports': d({
@@ -24,7 +24,7 @@ export const $: mglossary.T.Glossary<string> = {
             "unknown": string(),
         })),
         "GitIsCleanParameters": type(group({
-            "directory": member(string()),
+            "directory": member(reference("common", "Path")),
         })),
     }),
     'interfaces': d({

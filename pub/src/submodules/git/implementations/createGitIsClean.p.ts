@@ -5,7 +5,7 @@ import * as api from '../api'
 export const $$: api.CcreateGitIsClean = ($d) => {
     return ($) => {
         return $d.processCall(
-            `git -C ${$.directory} diff --exit-code && git -C ${$.directory} log origin/master..master --exit-code`,
+            `git -C ${$.directory} diff --exit-code && git -C ${$d.joinNestedStrings($.directory)} log origin/master..master --exit-code`,
         ).map(($) => {
             switch ($[0]) {
                 case 'error':

@@ -144,7 +144,7 @@ export const $$: api.Ctransform = ($) => {
                     )
 
                 }
-                return doPart($, key === 'pub')
+                return doPart($, key === "pub")
             })
 
             return {

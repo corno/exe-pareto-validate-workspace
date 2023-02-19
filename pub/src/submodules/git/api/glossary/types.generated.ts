@@ -14,10 +14,10 @@ export namespace T {
     
     export namespace GitIsCleanParameters {
         
-        export type directory = string
+        export type directory = mcommon.T.Path
     }
     
     export type GitIsCleanParameters = {
-        readonly 'directory': string
+        readonly 'directory': mcommon.T.Path
     }
 }

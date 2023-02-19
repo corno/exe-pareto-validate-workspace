@@ -8,11 +8,11 @@ import {
     boolean,
     typeReference,
     dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, optional
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands.p"
+} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
-const d = pd.wrapRawDictionary
+const d = pd.d
 
 export const $: mglossary.T.Glossary<string> = {
     'imports': d({
@@ -44,9 +44,27 @@ export const $: mglossary.T.Glossary<string> = {
             "latest version": member(optional(string())),
             "content fingerprint": member(optional(string())),
         })),
+
+        "GetProjectDataConfig": type(group({
+            "name": member(string()),
+            "path": member(reference("common", "Path")),
+        })),
+        "OptionalRemoteData": type(optional(reference("RemoteData"))),
+        "PackageData": type(group({
+            "name": member(string(), true),
+            "version": member(string(), true),
+            "content-fingerprint": member(string(), true),
+            "dependencies": member(dictionary(string()), true),
+            "devDependencies": member(dictionary(string()), true),
+        })),
     }),
     'interfaces': d({
     }),
     'functions': d({
+        "GetRemoteData": func(typeReference("common", "String"), null, null, data(typeReference("OptionalRemoteData"), true)),
+        "GetPackage": func(typeReference("common", "Null"), null, null, data(typeReference("PackageData"), true)),
+
+        "GetProjectData": func(typeReference("GetProjectDataConfig"), null, null, data(typeReference("Project"), true)),
+        "GetWorkspaceData": func(typeReference("common", "Path"), null, null, data(typeReference("Workspace"), true)),
     }),
 }
