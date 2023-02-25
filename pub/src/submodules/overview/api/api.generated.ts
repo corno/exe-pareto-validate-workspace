@@ -1,11 +1,11 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
 
-export type CcreateGraphviz = glo.FCreateGraphviz
+export type CcreateGraphviz = gglo.FCreateGraphviz
 
-export type Ctransform = glo.FTransform
+export type Ctransform = gglo.FTransform
 
 export type API = {
     createGraphviz: CcreateGraphviz

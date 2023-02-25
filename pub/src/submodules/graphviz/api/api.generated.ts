@@ -1,15 +1,15 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
-import * as mforeach from "res-pareto-foreach"
+import * as gforeach from "res-pareto-foreach"
 
-export type Cserialize = glo.FSerialize
+export type Cserialize = gglo.FSerialize
 
 export type CunboundSerialize = ($d: {
-    readonly 'createIdentifier': glo.FCreateIdentifier
-    readonly 'dictionaryForEach': mforeach.FDictionaryForEach
-}) => glo.FUnboundSerialize
+    readonly 'createIdentifier': gglo.FCreateIdentifier
+    readonly 'dictionaryForEach': gforeach.FDictionaryForEach
+}) => gglo.FUnboundSerialize
 
 export type API = {
     serialize: Cserialize

@@ -1,12 +1,12 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
-import * as mmain from "res-pareto-main"
+import * as gmain from "res-pareto-main"
 
-export type CgenerateGraphviz = mmain.FMain
+export type CgenerateGraphviz = gmain.FMain
 
-export type CvalidateWorkspace = mmain.FMain
+export type CvalidateWorkspace = gmain.FMain
 
 export type API = {
     generateGraphviz: CgenerateGraphviz

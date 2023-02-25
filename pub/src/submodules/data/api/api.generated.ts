@@ -1,21 +1,21 @@
 import * as pt from 'pareto-core-types'
 
-import * as glo from "./glossary"
+import * as gglo from "./glossary"
 
-import * as mfs from "lib-pareto-filesystem"
-import * as mgit from "../../git"
+import * as gfs from "lib-pareto-filesystem"
+import * as ggit from "../../git"
 
 export type CgetProjectData = ($d: {
-    readonly 'getPackage': glo.FGetPackage
-    readonly 'getRemoteData': glo.FGetRemoteData
-    readonly 'gitIsClean': mgit.FGitIsClean
-    readonly 'readDirectory': mfs.FReadDirectoryOrAbort
-}) => glo.FGetProjectData
+    readonly 'getPackage': gglo.FGetPackage
+    readonly 'getRemoteData': gglo.FGetRemoteData
+    readonly 'gitIsClean': ggit.FGitIsClean
+    readonly 'readDirectory': gfs.FReadDirectoryOrAbort
+}) => gglo.FGetProjectData
 
 export type CgetWorkspaceData = ($d: {
-    readonly 'getProjectData': glo.FGetProjectData
-    readonly 'readDirectory': mfs.FReadDirectoryOrAbort
-}) => glo.FGetWorkspaceData
+    readonly 'getProjectData': gglo.FGetProjectData
+    readonly 'readDirectory': gfs.FReadDirectoryOrAbort
+}) => gglo.FGetWorkspaceData
 
 export type API = {
     getProjectData: CgetProjectData

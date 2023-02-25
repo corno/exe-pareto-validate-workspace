@@ -6,7 +6,7 @@ const d = pd.d
 
 import { $ as api } from "./api.data"
 import { $ as git } from "./submodules/git/api.data"
-import { $ as graphviz } from "./submodules/graphviz/api.data"
+import { $ as graphviz } from "./submodules/graphviz/api.deprecated"
 import { $ as overview } from "./submodules/overview/api.data"
 import { $ as data } from "./submodules/data/api.data"
 

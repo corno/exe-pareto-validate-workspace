@@ -2,6 +2,6 @@
 
 import * as pe from 'pareto-core-exe'
 
-import * as mmain from "../main"
+import * as gmain from "../main"
 
-pe.runProgram(mmain.$a.generateGraphviz)
+pe.runProgram(gmain.$a.generateGraphviz)

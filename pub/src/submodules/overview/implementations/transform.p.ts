@@ -1,9 +1,9 @@
 import * as pt from 'pareto-core-types'
 import * as pl from 'pareto-core-lib'
+import * as pm from 'pareto-core-map'
 
-import * as api from "../api"
-
-import * as mdata from "../../data"
+import * as gapi from "../api"
+import * as gdata from "../../data"
 
 function ifSet<T, RT>(
     $: [false] | [true, T],
@@ -17,7 +17,7 @@ function ifSet<T, RT>(
     }
 }
 
-export const $$: api.Ctransform = ($) => {
+export const $$: gapi.Ctransform = ($) => {
     function anyEntry(
         $: pt.Dictionary<boolean>,
     ): boolean {
@@ -27,21 +27,21 @@ export const $$: api.Ctransform = ($) => {
         )
     }
     return {
-        projects: $.projects.map<api.T.Workspace.projects.D>((project, key) => {
+        projects: $.projects.map<gapi.T.Workspace.projects.D>((project, key) => {
             const projectName = key
 
 
-            const parts: pt.Dictionary<api.T.Workspace.projects.D.parts.D> = project.parts.map(($, key) => {
+            const parts: pt.Dictionary<gapi.T.Workspace.projects.D.parts.D> = project.parts.map(($, key) => {
 
                 function doPart(
-                    part: mdata.T.Project.parts.D,
+                    part: gdata.T.Project.parts.D,
                     isPublic: boolean,
-                ): api.T.Workspace.projects.D.parts.D {
+                ): gapi.T.Workspace.projects.D.parts.D {
                     return ifSet(
                         part.packageData,
                         ($) => {
                             const pd = $
-                            function processDeps(deps: pt.Dictionary<mdata.T.Dependency>): pt.Dictionary<api.T.Dependency> {
+                            function processDeps(deps: pt.Dictionary<gdata.T.Dependency>): pt.Dictionary<gapi.T.Dependency> {
                                 return deps.map((v) => {
 
                                     return {
@@ -49,7 +49,7 @@ export const $$: api.Ctransform = ($) => {
                                         'remote version': ifSet(v.remote, (vr) => vr['latest version'], () => [false]),
                                         'status': ifSet(
                                             v.remote,
-                                            ($): api.T.Dependency.status => {
+                                            ($): gapi.T.Dependency.status => {
                                                 if (`^${$['latest version']}` === v.version) {
                                                     return ['clean', {}]
                                                 } else {
@@ -66,7 +66,7 @@ export const $$: api.Ctransform = ($) => {
                             }
                             const deps = processDeps(pd.dependencies)
                             const devDeps = processDeps(pd.devDependencies)
-                            const status = ((): api.T.Workspace.projects.D.parts.D.status => {
+                            const status = ((): gapi.T.Workspace.projects.D.parts.D.status => {
                                 if (isPublic) {
                                     return ifSet(
                                         pd.name,
@@ -77,7 +77,7 @@ export const $$: api.Ctransform = ($) => {
                                                     ($) => {
                                                         return ifSet(
                                                             $['content fingerprint'],
-                                                            ($): api.T.Workspace.projects.D.parts.D.status => {
+                                                            ($): gapi.T.Workspace.projects.D.parts.D.status => {
                                                                 const rcf = $
                                                                 return ifSet(
                                                                     pd['content fingerprint'],
@@ -133,7 +133,7 @@ export const $$: api.Ctransform = ($) => {
                         () => {
                             return {
                                 'is public': isPublic,
-                                'dependencies': pl.createEmptyDictionary(),
+                                'dependencies': pm.wrapRawDictionary({}),
                                 'devDependencies': pl.createEmptyDictionary(),
                                 'dependencies dirty': true,
                                 'status': ['missing package', {}],

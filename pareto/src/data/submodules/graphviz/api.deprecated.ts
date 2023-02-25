@@ -15,7 +15,7 @@ import { definitionReference, constructor, algorithm } from "lib-pareto-typescri
 
 import * as mmoduleDefinition from "lib-pareto-typescript-project/dist/submodules/moduleDefinition"
 
-import { $ as glossary } from "./glossary.data"
+import { $ as glossary } from "./glossary.deprecated"
 
 const d = pd.d
 
