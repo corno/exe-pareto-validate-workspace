@@ -51,11 +51,11 @@ export const $: mglossary.T.Glossary<string> = {
         })),
         "OptionalRemoteData": type(optional(reference("RemoteData"))),
         "PackageData": type(group({
-            "name": member(string(), true),
-            "version": member(string(), true),
-            "content-fingerprint": member(string(), true),
-            "dependencies": member(dictionary(string()), true),
-            "devDependencies": member(dictionary(string()), true),
+            "name": member(string()),
+            "version": member(string()),
+            "content-fingerprint": member(string()),
+            "dependencies": member(dictionary(string())),
+            "devDependencies": member(dictionary(string())),
         })),
     }),
     'interfaces': d({

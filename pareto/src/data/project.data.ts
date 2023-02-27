@@ -13,7 +13,7 @@ import { $ as data } from "./submodules/data/api.data"
 export const $: mproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
     'description': "validate the projects in a workspace; do they conform to the pareto standard and are their dependencies updated",
-    'license': "ISC",
+    'license': "TBD",
 
     'dependencies': d({
         "glo-pareto-common": {},
@@ -37,19 +37,24 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
     'type': ['library', {
         'main': {
             'definition': api,
+            'implementation': ['manual', {}],
         },
         'submodules': d({
             "data": {
                 'definition': data,
+                'implementation': ['manual', {}],
             },
             "git": {
                 'definition': git,
+                'implementation': ['manual', {}],
             },
             "graphviz": {
                 'definition': graphviz,
+                'implementation': ['manual', {}],
             },
             "overview": {
                 'definition': overview,
+                'implementation': ['manual', {}],
             },
         }),
         'executables': d({

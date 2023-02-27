@@ -64,11 +64,11 @@ export namespace T {
     }
     
     export type PackageData = {
-        readonly 'content-fingerprint'?: string
-        readonly 'dependencies'?: pt.Dictionary<string>
-        readonly 'devDependencies'?: pt.Dictionary<string>
-        readonly 'name'?: string
-        readonly 'version'?: string
+        readonly 'content-fingerprint': string
+        readonly 'dependencies': pt.Dictionary<string>
+        readonly 'devDependencies': pt.Dictionary<string>
+        readonly 'name': string
+        readonly 'version': string
     }
     
     export namespace Project {

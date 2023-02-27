@@ -15,7 +15,11 @@ export const $: pt.Array<gliana2pareto.T.GenerateModuleData<pd.SourceLocation>> 
                     'properties optional': false,
                     'reference mapping': ['string', {}],
                 }],
-                'algorithms': {},
+                'visitor interface': [false],
+                'algorithms': {
+                    'serialize': [false],
+                },
+                
             },
             'mappedModel': {
                 'model': graphviz,
