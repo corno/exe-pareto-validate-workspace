@@ -4,11 +4,11 @@ import * as mproject from "lib-pareto-typescript-project/dist/submodules/project
 
 const d = pd.d
 
-import { $ as api } from "./api.data"
-import { $ as git } from "./submodules/git/api.data"
-import { $ as graphviz } from "./submodules/graphviz/api.deprecated"
-import { $ as overview } from "./submodules/overview/api.data"
-import { $ as data } from "./submodules/data/api.data"
+import { $ as main } from "./main/module.data"
+import { $ as git } from "./submodules/git/module.data"
+import { $ as graphviz } from "./submodules/graphviz/module.deprecated"
+import { $ as overview } from "./submodules/overview/module.data"
+import { $ as data } from "./submodules/data/module.data"
 
 export const $: mproject.T.Project<pd.SourceLocation> = {
     'author': "Corno",
@@ -16,15 +16,15 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
     'license': "TBD",
 
     'dependencies': d({
-        "glo-pareto-common": {},
-        "res-pareto-main": {},
-        "res-pareto-process": {},
-        "res-pareto-foreach": {},
-        "res-pareto-string": {},
-        "res-pareto-tostring": {},
-        "lib-fountain-pen": {},
+        "glo-pareto-common": null,
+        "res-pareto-main": null,
+        "res-pareto-process": null,
+        "res-pareto-foreach": null,
+        "res-pareto-string": null,
+        "res-pareto-tostring": null,
+        "lib-fountain-pen": null,
         // "lib-pareto-exe": "^0.5.0",
-         "lib-pareto-filesystem": {},
+         "lib-pareto-filesystem": null,
         // "res-pareto-arithmetic": "^0.4.0",
         // "res-pareto-async": "^0.2.0",
         // "res-pareto-collation": "^0.8.0",
@@ -35,42 +35,27 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
 
     }),
     'type': ['library', {
-        'main': {
-            'definition': api,
-            'implementation': ['manual', {}],
-        },
+        'main': main,
         'submodules': d({
-            "data": {
-                'definition': data,
-                'implementation': ['manual', {}],
-            },
-            "git": {
-                'definition': git,
-                'implementation': ['manual', {}],
-            },
-            "graphviz": {
-                'definition': graphviz,
-                'implementation': ['manual', {}],
-            },
-            "overview": {
-                'definition': overview,
-                'implementation': ['manual', {}],
-            },
+            "data": data,
+            "git": git,
+            "graphviz": graphviz,
+            "overview": overview,
         }),
         'executables': d({
-            "generateGraphviz": {},
-            "validateWorkspace": {},
+            "generateGraphviz": null,
+            "validateWorkspace": null,
         }),
         'test': {
             'dependencies': d({
             }),
             'glossary': {
                 'functions': d({}),
-                'imports': d({}),
                 'parameters': d({}),
                 'types': d({}),
                 'interfaces': d({}),
             },
+            'imports': d({}),
         }
     }],
 }

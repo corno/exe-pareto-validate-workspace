@@ -11,30 +11,21 @@ import {
     dictionary, group, member, taggedUnion, types, func, data
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { definitionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/moduleDefinition/shorthands"
+import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
 
-import * as mmoduleDefinition from "lib-pareto-typescript-project/dist/submodules/moduleDefinition"
+import * as mapi from "lib-pareto-typescript-project/dist/submodules/api"
 
 import { $ as glossary } from "./glossary.data"
 
 const d = pd.d
 
-export const $: mmoduleDefinition.T.ModuleDefinition<pd.SourceLocation> = {
-    'glossary': glossary,
-    'api': {
-        'imports': d({
-            "main": "res-pareto-main",
-            "process": "res-pareto-process",
-            "string": "res-pareto-string",
-            "tostring": "res-pareto-tostring",
-        }),
-        'algorithms': d({
-            "createGitIsClean": algorithm(definitionReference("GitIsClean"), constructor(null, {
-                "handleError": definitionReference("HandleError"),
-                "processCall": definitionReference("process", {}, "Call"),
-                "trimEnd": definitionReference("string", {}, "TrimEnd"),
-                "joinNestedStrings": definitionReference("tostring", {}, "JoinNestedStrings")
-            }))
-        })
-    },
+export const $: mapi.T.API<pd.SourceLocation> = {
+    'algorithms': d({
+        "createGitIsClean": algorithm(functionReference("this", {}, "GitIsClean"), constructor(null, {
+            "handleError": functionReference("this", {}, "HandleError"),
+            "processCall": functionReference("process", {}, "Call"),
+            "trimEnd": functionReference("string", {}, "TrimEnd"),
+            "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings")
+        }))
+    })
 }
