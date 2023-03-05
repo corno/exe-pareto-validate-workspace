@@ -7,7 +7,7 @@ import {
     reference,
     boolean,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -48,11 +48,13 @@ export const $: mglossary.T.Glossary<string> = {
             "path": member(reference("common", "Path")),
         })),
     }),
+    'builders': d({
+    }),
     'interfaces': d({
     }),
     'functions': d({
         "Serialize": func(typeReference("SerializeData"), null, null, null),
-        "UnboundSerialize": func(typeReference("Graph"), null, interfaceReference("fp", "Block"), null),
+        //"UnboundSerialize": func(typeReference("Graph"), null, interfaceReference("fp", "Block"), null),
         "CreateIdentifier": func(typeReference("common", "String"), null, null, data(typeReference("common", "String"), false)),
     }),
 }

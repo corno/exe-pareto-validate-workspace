@@ -1,7 +1,5 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
-import * as gfp from "lib-fountain-pen"
 
 export namespace T {
     
@@ -149,11 +147,11 @@ export namespace T {
         
         export type graph = T.Graph
         
-        export type path = gcommon.T.Path
+        export type path = g_common.T.Path
     }
     
     export type SerializeData = {
         readonly 'graph': T.Graph
-        readonly 'path': gcommon.T.Path
+        readonly 'path': g_common.T.Path
     }
 }

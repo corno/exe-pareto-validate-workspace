@@ -25,7 +25,7 @@ export const $: mapi.T.API<pd.SourceLocation> = {
             "handleError": functionReference("this", {}, "HandleError"),
             "processCall": functionReference("process", {}, "Call"),
             "trimEnd": functionReference("string", {}, "TrimEnd"),
-            "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings")
-        }))
-    })
+            "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
+        })),
+    }),
 }

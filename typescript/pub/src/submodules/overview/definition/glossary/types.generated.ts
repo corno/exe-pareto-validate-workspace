@@ -1,8 +1,8 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
-import * as gdata from "../../../data"
-import * as ggraphviz from "../../../graphviz"
+import * as g_common from "glo-pareto-common"
+import * as g_data from "../../../data"
+import * as g_graphviz from "../../../graphviz"
 
 export namespace T {
     

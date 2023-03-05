@@ -1,12 +1,12 @@
 import * as pt from 'pareto-core-types'
 
-import * as gthis from "./glossary"
+import * as g_this from "./glossary"
 
-export type CcreateGraphviz = gthis.FCreateGraphviz
+export type createGraphviz = g_this.F.CreateGraphviz
 
-export type Ctransform = gthis.FTransform
+export type transform = g_this.F.Transform
 
 export type API = {
-    createGraphviz: CcreateGraphviz
-    transform: Ctransform
+    createGraphviz: createGraphviz
+    transform: transform
 }

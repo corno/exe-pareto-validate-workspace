@@ -7,7 +7,7 @@ import {
     reference,
     boolean,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, optional
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -18,7 +18,7 @@ export const $: mglossary.T.Glossary<string> = {
     'parameters': d({}),
     'types': d({
         "Workspace": type(group({
-            "projects": member(dictionary(reference("Project")))
+            "projects": member(dictionary(reference("Project"))),
         })),
         "Project": type(group({
             "git is clean": member(boolean()),
@@ -30,12 +30,12 @@ export const $: mglossary.T.Glossary<string> = {
                     "dependencies": member(dictionary(reference("Dependency"))),
                     "devDependencies": member(dictionary(reference("Dependency"))),
                     "remote": member(optional(reference("RemoteData"))),
-                })))
-            })))
+                }))),
+            }))),
         })),
         "Dependency": type(group({
             "version": member(string()),
-            "remote": member(optional(reference("RemoteData")))
+            "remote": member(optional(reference("RemoteData"))),
         })),
         "RemoteData": type(group({
             "latest version": member(optional(string())),
@@ -55,6 +55,7 @@ export const $: mglossary.T.Glossary<string> = {
             "devDependencies": member(dictionary(string())),
         })),
     }),
+    'builders': d({}),
     'interfaces': d({
     }),
     'functions': d({

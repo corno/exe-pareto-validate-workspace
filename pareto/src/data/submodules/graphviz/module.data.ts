@@ -14,15 +14,16 @@ export const $: gproject.T.Project._ltype.library.submodules.D<pd.SourceLocation
         'glossary': {
             'root': glossary,
             'imports': d({
-                "common": external("glo-pareto-common"),
-                "fp": external("lib-fountain-pen"),
+                //"common": external("glo-pareto-common"),
             }),
         },
         'api': {
             'root': api,
             'imports': d({
-                "foreach": external("res-pareto-foreach"),
-                "this": this_(),
+                // "process": external( "res-pareto-process"),
+                // "string": external("res-pareto-string"),
+                // "tostring": external("res-pareto-tostring"),
+                // "this": this_(),
             }),
         }
     },

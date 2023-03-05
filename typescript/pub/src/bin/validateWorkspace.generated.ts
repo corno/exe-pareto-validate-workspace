@@ -4,4 +4,4 @@ import * as pe from 'pareto-core-exe'
 
 import * as gmain from "../main"
 
-pe.runProgram(gmain.$a.validateWorkspace)
+pe.runProgram(gmain.$r.validateWorkspace)

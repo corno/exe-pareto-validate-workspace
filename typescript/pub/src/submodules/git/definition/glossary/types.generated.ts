@@ -1,6 +1,6 @@
 import * as pt from 'pareto-core-types'
 
-import * as gcommon from "glo-pareto-common"
+import * as g_common from "glo-pareto-common"
 
 export namespace T {
     
@@ -14,10 +14,10 @@ export namespace T {
     
     export namespace GitIsCleanParameters {
         
-        export type directory = gcommon.T.Path
+        export type directory = g_common.T.Path
     }
     
     export type GitIsCleanParameters = {
-        readonly 'directory': gcommon.T.Path
+        readonly 'directory': g_common.T.Path
     }
 }

@@ -1,11 +1,18 @@
 import * as pt from 'pareto-core-types'
 
-import { T   } from './types.generated'
+import { T } from './types.generated'
 
-import * as gcommon from "glo-pareto-common"
-import * as gdata from "../../../data"
-import * as ggraphviz from "../../../graphviz"
+import * as g_common from "glo-pareto-common"
+import * as g_data from "../../../data"
+import * as g_graphviz from "../../../graphviz"
 
-export type FCreateGraphviz = ($: T.Workspace,) => ggraphviz.T.Graph
+export namespace I {}
 
-export type FTransform = ($: gdata.T.Workspace,) => T.Workspace
+export namespace B {}
+
+export namespace F {
+    
+    export type CreateGraphviz = ($: T.Workspace,) => g_graphviz.T.Graph
+    
+    export type Transform = ($: g_data.T.Workspace,) => T.Workspace
+}

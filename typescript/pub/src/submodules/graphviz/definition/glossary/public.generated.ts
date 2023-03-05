@@ -1,12 +1,15 @@
 import * as pt from 'pareto-core-types'
 
-import { T   } from './types.generated'
+import { T } from './types.generated'
 
-import * as gcommon from "glo-pareto-common"
-import * as gfp from "lib-fountain-pen"
 
-export type FCreateIdentifier = ($: gcommon.T.String,) => gcommon.T.String
+export namespace I {}
 
-export type FSerialize = ($: T.SerializeData,) => void
+export namespace B {}
 
-export type FUnboundSerialize = ($: T.Graph, $i: gfp.IBlock,) => void
+export namespace F {
+    
+    export type CreateIdentifier = ($: g_common.T.String,) => g_common.T.String
+    
+    export type Serialize = ($: T.SerializeData,) => void
+}

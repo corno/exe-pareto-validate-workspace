@@ -6,7 +6,7 @@ const d = pd.d
 
 import { $ as main } from "./main/module.data"
 import { $ as git } from "./submodules/git/module.data"
-import { $ as graphviz } from "./submodules/graphviz/module.deprecated"
+import { $ as graphviz } from "./submodules/graphviz/module.data"
 import { $ as overview } from "./submodules/overview/module.data"
 import { $ as data } from "./submodules/data/module.data"
 
@@ -50,10 +50,11 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
             'dependencies': d({
             }),
             'glossary': {
-                'functions': d({}),
                 'parameters': d({}),
                 'types': d({}),
+                'builders': d({}),
                 'interfaces': d({}),
+                'functions': d({}),
             },
             'imports': d({}),
         }

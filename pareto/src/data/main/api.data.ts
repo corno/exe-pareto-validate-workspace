@@ -9,5 +9,5 @@ export const $: gapi.T.API<pd.SourceLocation> = {
     'algorithms': d({
         "generateGraphviz": algorithm(functionReference("main", {}, "Main")),
         "validateWorkspace": algorithm(functionReference("main", {}, "Main")),
-    })
+    }),
 }

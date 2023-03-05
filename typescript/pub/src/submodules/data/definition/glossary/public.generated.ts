@@ -1,13 +1,20 @@
 import * as pt from 'pareto-core-types'
 
-import { T   } from './types.generated'
+import { T } from './types.generated'
 
-import * as gcommon from "glo-pareto-common"
+import * as g_common from "glo-pareto-common"
 
-export type FGetPackage = ($: gcommon.T.Null,) => pt.AsyncValue<T.PackageData>
+export namespace I {}
 
-export type FGetProjectData = ($: T.GetProjectDataConfig,) => pt.AsyncValue<T.Project>
+export namespace B {}
 
-export type FGetRemoteData = ($: gcommon.T.String,) => pt.AsyncValue<T.OptionalRemoteData>
-
-export type FGetWorkspaceData = ($: gcommon.T.Path,) => pt.AsyncValue<T.Workspace>
+export namespace F {
+    
+    export type GetPackage = ($: g_common.T.Null,) => pt.AsyncValue<T.PackageData>
+    
+    export type GetProjectData = ($: T.GetProjectDataConfig,) => pt.AsyncValue<T.Project>
+    
+    export type GetRemoteData = ($: g_common.T.String,) => pt.AsyncValue<T.OptionalRemoteData>
+    
+    export type GetWorkspaceData = ($: g_common.T.Path,) => pt.AsyncValue<T.Workspace>
+}

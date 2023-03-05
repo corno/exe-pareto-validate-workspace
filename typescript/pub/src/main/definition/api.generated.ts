@@ -1,12 +1,12 @@
 import * as pt from 'pareto-core-types'
 
-import * as gmain from "res-pareto-main"
+import * as g_main from "res-pareto-main"
 
-export type CgenerateGraphviz = gmain.FMain
+export type generateGraphviz = g_main.F.Main
 
-export type CvalidateWorkspace = gmain.FMain
+export type validateWorkspace = g_main.F.Main
 
 export type API = {
-    generateGraphviz: CgenerateGraphviz
-    validateWorkspace: CvalidateWorkspace
+    generateGraphviz: generateGraphviz
+    validateWorkspace: validateWorkspace
 }

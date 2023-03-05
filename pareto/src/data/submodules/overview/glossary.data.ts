@@ -7,7 +7,7 @@ import {
     reference,
     boolean,
     typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, method, type, number, optional
+    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -38,7 +38,7 @@ export const $: mglossary.T.Glossary<string> = {
                 }))),
                 "git is clean": member(boolean()),
                 "is dirty": member(boolean()),
-            })))
+            }))),
         })),
 
 
@@ -50,12 +50,13 @@ export const $: mglossary.T.Glossary<string> = {
                 "missing remote": group({}),
                 "not at latest version": group({}),
             })),
-        }))
+        })),
     }),
+    'builders': d({}),
     'interfaces': d({
     }),
     'functions': d({
         "CreateGraphviz": func(typeReference("Workspace"), null, null, data(typeReference("graphviz", "Graph"), false)),
-        "Transform": func(typeReference("data", "Workspace"), null, null, data(typeReference("Workspace"), false))
+        "Transform": func(typeReference("data", "Workspace"), null, null, data(typeReference("Workspace"), false)),
     }),
 }

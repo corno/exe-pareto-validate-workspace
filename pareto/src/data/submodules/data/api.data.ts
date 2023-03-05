@@ -16,7 +16,7 @@ export const $: gapi.T.API<pd.SourceLocation> = {
         })),
         "getWorkspaceData": algorithm(functionReference("this", {}, "GetWorkspaceData"), constructor(null, {
             "getProjectData": functionReference("this", {}, "GetProjectData"),
-            "readDirectory": functionReference("fs", {}, "ReadDirectoryOrAbort")
+            "readDirectory": functionReference("fs", {}, "ReadDirectoryOrAbort"),
         })),
-    })
+    }),
 }

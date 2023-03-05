@@ -1,9 +1,16 @@
 import * as pt from 'pareto-core-types'
 
-import { T   } from './types.generated'
+import { T } from './types.generated'
 
-import * as gcommon from "glo-pareto-common"
+import * as g_common from "glo-pareto-common"
 
-export type FGitIsClean = ($: T.GitIsCleanParameters,) => pt.AsyncValue<gcommon.T.Boolean>
+export namespace I {}
 
-export type FHandleError = ($: T.Error,) => void
+export namespace B {}
+
+export namespace F {
+    
+    export type GitIsClean = ($: T.GitIsCleanParameters,) => pt.AsyncValue<g_common.T.Boolean>
+    
+    export type HandleError = ($: T.Error,) => void
+}

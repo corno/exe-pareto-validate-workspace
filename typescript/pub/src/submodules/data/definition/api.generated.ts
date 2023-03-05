@@ -1,22 +1,22 @@
 import * as pt from 'pareto-core-types'
 
-import * as gfs from "lib-pareto-filesystem"
-import * as ggit from "../../git"
-import * as gthis from "./glossary"
+import * as g_fs from "lib-pareto-filesystem"
+import * as g_git from "../../git"
+import * as g_this from "./glossary"
 
-export type CgetProjectData = ($d: {
-    readonly 'getPackage': gthis.FGetPackage
-    readonly 'getRemoteData': gthis.FGetRemoteData
-    readonly 'gitIsClean': ggit.FGitIsClean
-    readonly 'readDirectory': gfs.FReadDirectoryOrAbort
-}) => gthis.FGetProjectData
+export type getProjectData = ($d: {
+    readonly 'getPackage': g_this.F.GetPackage
+    readonly 'getRemoteData': g_this.F.GetRemoteData
+    readonly 'gitIsClean': g_git.F.GitIsClean
+    readonly 'readDirectory': g_fs.F.ReadDirectoryOrAbort
+}) => g_this.F.GetProjectData
 
-export type CgetWorkspaceData = ($d: {
-    readonly 'getProjectData': gthis.FGetProjectData
-    readonly 'readDirectory': gfs.FReadDirectoryOrAbort
-}) => gthis.FGetWorkspaceData
+export type getWorkspaceData = ($d: {
+    readonly 'getProjectData': g_this.F.GetProjectData
+    readonly 'readDirectory': g_fs.F.ReadDirectoryOrAbort
+}) => g_this.F.GetWorkspaceData
 
 export type API = {
-    getProjectData: CgetProjectData
-    getWorkspaceData: CgetWorkspaceData
+    getProjectData: getProjectData
+    getWorkspaceData: getWorkspaceData
 }

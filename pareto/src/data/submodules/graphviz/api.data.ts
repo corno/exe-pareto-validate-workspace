@@ -13,5 +13,5 @@ export const $: mapi.T.API<pd.SourceLocation> = {
             "createIdentifier": functionReference("this", {}, "CreateIdentifier"),
         })),
         "serialize": algorithm(functionReference("this", {}, "Serialize")),
-    })
+    }),
 }
