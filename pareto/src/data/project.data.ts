@@ -24,7 +24,7 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
         "res-pareto-tostring": null,
         "lib-fountain-pen": null,
         // "lib-pareto-exe": "^0.5.0",
-         "lib-pareto-filesystem": null,
+        "lib-pareto-filesystem": null,
         // "res-pareto-arithmetic": "^0.4.0",
         // "res-pareto-async": "^0.2.0",
         // "res-pareto-collation": "^0.8.0",
@@ -51,7 +51,10 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
             }),
             'glossary': {
                 'parameters': d({}),
-                'types': d({}),
+                'root': {
+                    'namespaces': d({}),
+                    'types': d({}),
+                },
                 'builders': d({}),
                 'interfaces': d({}),
                 'functions': d({}),

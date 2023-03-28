@@ -10,51 +10,54 @@ import {
     dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
-export const $: mglossary.T.Glossary<string> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
-    'types': d({
-        "Workspace": type(group({
-            "projects": member(dictionary(reference("Project"))),
-        })),
-        "Project": type(group({
-            "git is clean": member(boolean()),
-            "parts": member(dictionary(group({
-                "packageData": member(optional(group({
-                    "name": member(optional(string())),
-                    "version": member(optional(string())),
-                    "content fingerprint": member(optional(string())),
-                    "dependencies": member(dictionary(reference("Dependency"))),
-                    "devDependencies": member(dictionary(reference("Dependency"))),
-                    "remote": member(optional(reference("RemoteData"))),
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "Workspace": type(group({
+                "projects": member(dictionary(reference("Project"))),
+            })),
+            "Project": type(group({
+                "git is clean": member(boolean()),
+                "parts": member(dictionary(group({
+                    "packageData": member(optional(group({
+                        "name": member(optional(string())),
+                        "version": member(optional(string())),
+                        "content fingerprint": member(optional(string())),
+                        "dependencies": member(dictionary(reference("Dependency"))),
+                        "devDependencies": member(dictionary(reference("Dependency"))),
+                        "remote": member(optional(reference("RemoteData"))),
+                    }))),
                 }))),
-            }))),
-        })),
-        "Dependency": type(group({
-            "version": member(string()),
-            "remote": member(optional(reference("RemoteData"))),
-        })),
-        "RemoteData": type(group({
-            "latest version": member(optional(string())),
-            "content fingerprint": member(optional(string())),
-        })),
+            })),
+            "Dependency": type(group({
+                "version": member(string()),
+                "remote": member(optional(reference("RemoteData"))),
+            })),
+            "RemoteData": type(group({
+                "latest version": member(optional(string())),
+                "content fingerprint": member(optional(string())),
+            })),
 
-        "GetProjectDataConfig": type(group({
-            "name": member(string()),
-            "path": member(reference("common", "Path")),
-        })),
-        "OptionalRemoteData": type(optional(reference("RemoteData"))),
-        "PackageData": type(group({
-            "name": member(string()),
-            "version": member(string()),
-            "content-fingerprint": member(string()),
-            "dependencies": member(dictionary(string())),
-            "devDependencies": member(dictionary(string())),
-        })),
-    }),
+            "GetProjectDataConfig": type(group({
+                "name": member(string()),
+                "path": member(reference("common", "Path")),
+            })),
+            "OptionalRemoteData": type(optional(reference("RemoteData"))),
+            "PackageData": type(group({
+                "name": member(string()),
+                "version": member(string()),
+                "content-fingerprint": member(string()),
+                "dependencies": member(dictionary(string())),
+                "devDependencies": member(dictionary(string())),
+            })),
+        }),
+    },
     'builders': d({}),
     'interfaces': d({
     }),

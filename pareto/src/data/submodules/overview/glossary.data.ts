@@ -10,48 +10,51 @@ import {
     dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import * as mglossary from "lib-pareto-typescript-project/dist/submodules/glossary"
+import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
 
 const d = pd.d
 
-export const $: mglossary.T.Glossary<string> = {
+export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
-    'types': d({
-        "Workspace": type(group({
-            "projects": member(dictionary(group({
+    'root': {
+        'namespaces': d({}),
+        'types': d({
+            "Workspace": type(group({
+                "projects": member(dictionary(group({
 
-                "parts": member(dictionary(group({
-                    "is public": member(boolean()),
-                    "version": member(optional(string())),
-                    "content fingerprint": member(optional(string())),
-                    "status": member(taggedUnion({
-                        "clean": group({}),
-                        "missing package": group({}),
-                        "invalid package name": group({}),
-                        "unpublished": group({}),
-                        "fingerprint out of sync": group({}),
-                        "no remote fingerprint": group({}),
-                    })),
-                    "dependencies dirty": member(boolean()),
-                    "dependencies": member(dictionary(reference("Dependency"))),
-                    "devDependencies": member(dictionary(reference("Dependency"))),
+                    "parts": member(dictionary(group({
+                        "is public": member(boolean()),
+                        "version": member(optional(string())),
+                        "content fingerprint": member(optional(string())),
+                        "status": member(taggedUnion({
+                            "clean": group({}),
+                            "missing package": group({}),
+                            "invalid package name": group({}),
+                            "unpublished": group({}),
+                            "fingerprint out of sync": group({}),
+                            "no remote fingerprint": group({}),
+                        })),
+                        "dependencies dirty": member(boolean()),
+                        "dependencies": member(dictionary(reference("Dependency"))),
+                        "devDependencies": member(dictionary(reference("Dependency"))),
+                    }))),
+                    "git is clean": member(boolean()),
+                    "is dirty": member(boolean()),
                 }))),
-                "git is clean": member(boolean()),
-                "is dirty": member(boolean()),
-            }))),
-        })),
-
-
-        "Dependency": type(group({
-            "local version": member(string()),
-            "remote version": member(optional(string())),
-            "status": member(taggedUnion({
-                "clean": group({}),
-                "missing remote": group({}),
-                "not at latest version": group({}),
             })),
-        })),
-    }),
+
+
+            "Dependency": type(group({
+                "local version": member(string()),
+                "remote version": member(optional(string())),
+                "status": member(taggedUnion({
+                    "clean": group({}),
+                    "missing remote": group({}),
+                    "not at latest version": group({}),
+                })),
+            })),
+        }),
+    },
     'builders': d({}),
     'interfaces': d({
     }),

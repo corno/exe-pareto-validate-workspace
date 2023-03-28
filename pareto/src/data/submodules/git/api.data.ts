@@ -11,9 +11,9 @@ import {
     dictionary, group, member, taggedUnion, types, func, data
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
-import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as mapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as mapi from "lib-pareto-typescript-project/dist/submodules/project"
 
 import { $ as glossary } from "./glossary.data"
 

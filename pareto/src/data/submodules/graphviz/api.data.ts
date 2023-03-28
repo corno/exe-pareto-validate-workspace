@@ -1,8 +1,8 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/api/shorthands"
+import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as mapi from "lib-pareto-typescript-project/dist/submodules/api"
+import * as mapi from "lib-pareto-typescript-project/dist/submodules/project"
 
 const d = pd.d
 
