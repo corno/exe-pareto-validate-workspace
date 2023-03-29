@@ -1,31 +1,20 @@
 import * as pd from 'pareto-core-data'
 
-import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    nested,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data
-} from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
+import { afunction, algorithm, aSideEffect, dependent, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
-import * as mapi from "lib-pareto-typescript-project/dist/submodules/project"
-
-import { $ as glossary } from "./glossary.data"
 
 const d = pd.d
 
-export const $: mapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "createGitIsClean": algorithm(functionReference("this", {}, "GitIsClean"), constructor(null, {
-            "handleError": functionReference("this", {}, "HandleError"),
-            "processCall": functionReference("process", {}, "Call"),
-            "trimEnd": functionReference("string", {}, "TrimEnd"),
-            "joinNestedStrings": functionReference("tostring", {}, "JoinNestedStrings"),
+        "createGitIsClean": algorithm(afunction("this", {}, "GitIsClean"), {}, dependent(null, {
+            "processCall": afunction("process", {}, "Call"),
+            "trimEnd": sfunction("string", {}, "TrimEnd"),
+            "joinNestedStrings": sfunction("tostring", {}, "JoinNestedStrings"),
+        }, {
+            "handleError": aSideEffect("this", {}, "HandleError"),
         })),
     }),
 }

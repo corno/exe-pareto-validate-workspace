@@ -1,17 +1,17 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { algorithm, procedure, dependent, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
-import * as mapi from "lib-pareto-typescript-project/dist/submodules/project"
+import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 
 const d = pd.d
 
-export const $: mapi.T.API<pd.SourceLocation> = {
+export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "unboundSerialize": algorithm(functionReference("this", {}, "UnboundSerialize"), constructor(null, {
-            "dictionaryForEach": functionReference("foreach", {}, "DictionaryForEach"),
-            "createIdentifier": functionReference("this", {}, "CreateIdentifier"),
-        })),
-        "serialize": algorithm(functionReference("this", {}, "Serialize")),
+        "unboundSerialize": algorithm(procedure("this", {}, "UnboundSerialize"), {}, dependent(null, {
+            "dictionaryForEach": procedure("foreach", {}, "DictionaryForEach"),
+            "createIdentifier": sfunction("this", {}, "CreateIdentifier"),
+        }, {})),
+        "serialize": algorithm(procedure("this", {}, "Serialize")),
     }),
 }

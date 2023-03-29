@@ -188,7 +188,7 @@
 //                                             const core_libs = pw.wrapRawDictionary({
 //                                                 "pareto-core-async": null,
 //                                                 "pareto-core-exe": null,
-//                                                 "pareto-core-lib": null,
+//                                                 'pareto-core-lib': null,
 //                                                 "pareto-core-raw": null,
 //                                                 "pareto-core-resolve": null,
 //                                                 "pareto-core-state": null,

@@ -2,35 +2,23 @@ import * as pd from 'pareto-core-data'
 
 import * as gliana from "lib-liana/dist/submodules/liana"
 import {
-    array,
-    boolean,
-    component,
-    dictionary,
     globalType,
     group,
-    r,
-    reference,
-    //string,
-    taggedUnion,
-    string,
-    prop,
+    r
 } from "lib-liana/dist/submodules/liana/shorthands"
 
 const d = pd.d
 
-export const $: gliana.T.Model<pd.SourceLocation> = {
-    'type library': {
-        'imports': d({}),
-        'string types': d({
-            "text": null,
-        }),
-        'global types': d({
-            "Root": globalType({}, group({
-            })),
+export const $: gliana.T.Type__Library<pd.SourceLocation> = {
+    'imports': d({}),
+    'terminal types': d({
+        "text": null,
+    }),
+    'global types': d({
+        "Root": globalType({}, group({
+        })),
 
 
 
-        }),
-    },
-    'root': r("Root"),
+    }),
 }

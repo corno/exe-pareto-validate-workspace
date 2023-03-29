@@ -1,13 +1,9 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
+    boolean, data, dictionary, externalTypeReference, group,
+    imp,
+    member, optional, ref, sfunction, string, taggedUnion, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -16,6 +12,10 @@ const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
+    'imports': d({
+        "graphviz": imp({}),
+        "data": imp({}),
+    }),
     'root': {
         'namespaces': d({}),
         'types': d({
@@ -35,8 +35,8 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                             "no remote fingerprint": group({}),
                         })),
                         "dependencies dirty": member(boolean()),
-                        "dependencies": member(dictionary(reference("Dependency"))),
-                        "devDependencies": member(dictionary(reference("Dependency"))),
+                        "dependencies": member(dictionary(ref(typeReference("Dependency")))),
+                        "devDependencies": member(dictionary(ref(typeReference("Dependency")))),
                     }))),
                     "git is clean": member(boolean()),
                     "is dirty": member(boolean()),
@@ -55,11 +55,17 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             })),
         }),
     },
-    'builders': d({}),
-    'interfaces': d({
-    }),
-    'functions': d({
-        "CreateGraphviz": func(typeReference("Workspace"), null, null, data(typeReference("graphviz", "Graph"), false)),
-        "Transform": func(typeReference("data", "Workspace"), null, null, data(typeReference("Workspace"), false)),
-    }),
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+
+            "CreateGraphviz": sfunction(externalTypeReference("graphviz", "Graph"), data(typeReference("Workspace"))),
+            "Transform": sfunction(typeReference("Workspace"), data(externalTypeReference("data", "Workspace"))),
+
+        }),
+    },
 }

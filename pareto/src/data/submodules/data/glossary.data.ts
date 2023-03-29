@@ -1,13 +1,9 @@
 import * as pd from 'pareto-core-data'
 
 import {
-    null_,
-    array,
-    string,
-    reference,
-    boolean,
-    typeReference,
-    dictionary, group, member, taggedUnion, types, func, data, interfaceReference, inf, type, number, optional
+    afunction, boolean, dictionary, externalTypeReference, group,
+    imp,
+    member, optional, ref, string, type, typeReference
 } from "lib-pareto-typescript-project/dist/submodules/glossary/shorthands"
 
 import * as g_glossary from "lib-pareto-typescript-project/dist/submodules/glossary"
@@ -16,11 +12,14 @@ const d = pd.d
 
 export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
     'parameters': d({}),
+    'imports': d({
+        "common": imp({}),
+    }),
     'root': {
         'namespaces': d({}),
         'types': d({
             "Workspace": type(group({
-                "projects": member(dictionary(reference("Project"))),
+                "projects": member(dictionary(ref(typeReference("Project")))),
             })),
             "Project": type(group({
                 "git is clean": member(boolean()),
@@ -29,15 +28,15 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
                         "name": member(optional(string())),
                         "version": member(optional(string())),
                         "content fingerprint": member(optional(string())),
-                        "dependencies": member(dictionary(reference("Dependency"))),
-                        "devDependencies": member(dictionary(reference("Dependency"))),
-                        "remote": member(optional(reference("RemoteData"))),
+                        "dependencies": member(dictionary(ref(typeReference("Dependency")))),
+                        "devDependencies": member(dictionary(ref(typeReference("Dependency")))),
+                        "remote": member(optional(ref(typeReference("RemoteData")))),
                     }))),
                 }))),
             })),
             "Dependency": type(group({
                 "version": member(string()),
-                "remote": member(optional(reference("RemoteData"))),
+                "remote": member(optional(ref(typeReference("RemoteData")))),
             })),
             "RemoteData": type(group({
                 "latest version": member(optional(string())),
@@ -46,9 +45,9 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
 
             "GetProjectDataConfig": type(group({
                 "name": member(string()),
-                "path": member(reference("common", "Path")),
+                "path": member(ref(externalTypeReference("common", "Path"))),
             })),
-            "OptionalRemoteData": type(optional(reference("RemoteData"))),
+            "OptionalRemoteData": type(optional(ref(typeReference("RemoteData")))),
             "PackageData": type(group({
                 "name": member(string()),
                 "version": member(string()),
@@ -58,14 +57,17 @@ export const $: g_glossary.T.Glossary<pd.SourceLocation> = {
             })),
         }),
     },
-    'builders': d({}),
-    'interfaces': d({
-    }),
-    'functions': d({
-        "GetRemoteData": func(typeReference("common", "String"), null, null, data(typeReference("OptionalRemoteData"), true)),
-        "GetPackage": func(typeReference("common", "Null"), null, null, data(typeReference("PackageData"), true)),
-
-        "GetProjectData": func(typeReference("GetProjectDataConfig"), null, null, data(typeReference("Project"), true)),
-        "GetWorkspaceData": func(typeReference("common", "Path"), null, null, data(typeReference("Workspace"), true)),
-    }),
+    'asynchronous': {
+        'interfaces': d({}),
+        'algorithms': d({
+            "GetRemoteData": afunction(typeReference("OptionalRemoteData"), externalTypeReference("common", "String")),
+            "GetPackage": afunction(typeReference("PackageData"), externalTypeReference("common", "Null")),
+            "GetProjectData": afunction(typeReference("Project"), typeReference("GetProjectDataConfig")),
+            "GetWorkspaceData": afunction(typeReference("Workspace"), externalTypeReference("common", "Path")),
+        }),
+    },
+    'synchronous': {
+        'interfaces': d({}),
+        'algorithms': d({}),
+    },
 }

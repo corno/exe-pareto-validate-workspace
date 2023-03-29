@@ -4,6 +4,7 @@ import * as mproject from "lib-pareto-typescript-project/dist/submodules/project
 
 const d = pd.d
 
+import { $ as bindings } from "./bindings/moduledefinition.data"
 import { $ as main } from "./main/module.data"
 import { $ as git } from "./submodules/git/module.data"
 import { $ as graphviz } from "./submodules/graphviz/module.data"
@@ -42,22 +43,48 @@ export const $: mproject.T.Project<pd.SourceLocation> = {
             "graphviz": graphviz,
             "overview": overview,
         }),
+        'bindings': [true, {
+            'definition': bindings,
+            'implementation': ['typescript', null],
+
+        }],
         'executables': d({
-            "generateGraphviz": null,
-            "validateWorkspace": null,
+            "generateGraphviz": {
+                'constructor': "CreateWorkspaceValidator"
+            },
+            "validateWorkspace": {
+                'constructor': "CreateWorspaceValidator"
+            },
         }),
         'test': {
             'dependencies': d({
             }),
-            'glossary': {
-                'parameters': d({}),
-                'root': {
-                    'namespaces': d({}),
-                    'types': d({}),
+            'definition': {
+                'glossary': {
+                    'root': {
+                        'parameters': d({}),
+                        'imports': d({}),
+                        'root': {
+                            'namespaces': d({}),
+                            'types': d({}),
+                        },
+                        'asynchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                        'synchronous': {
+                            'interfaces': d({}),
+                            'algorithms': d({}),
+                        },
+                    },
+                    'imports': d({}),
                 },
-                'builders': d({}),
-                'interfaces': d({}),
-                'functions': d({}),
+                'api': {
+                    'root': {
+                        'algorithms': d({}),
+                    },
+                    'imports': d({}),
+                },
             },
             'imports': d({}),
         }

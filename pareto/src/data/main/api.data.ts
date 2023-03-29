@@ -1,13 +1,13 @@
 import * as pd from 'pareto-core-data'
 
-import { functionReference, constructor, algorithm, typeReference } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
+import { algorithm, constructor, sfunction } from "lib-pareto-typescript-project/dist/submodules/project/shorthands"
 
 import * as g_project from "lib-pareto-typescript-project/dist/submodules/project"
 const d = pd.d
 
 export const $: g_project.T.ModuleDefinition.api.root<pd.SourceLocation> = {
     'algorithms': d({
-        "generateGraphviz": algorithm(functionReference("main", {}, "Main")),
-        "validateWorkspace": algorithm(functionReference("main", {}, "Main")),
+        "createGraphvizGenerator": algorithm(constructor("this", {}, "CreateGraphvizGenerator")),
+        "createWorkspaceValidator": algorithm(constructor("this", {}, "CreateWorkspaceValidator")),
     }),
 }
