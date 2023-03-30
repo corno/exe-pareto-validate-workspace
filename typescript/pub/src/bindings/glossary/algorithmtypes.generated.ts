@@ -11,12 +11,16 @@ export namespace ASYNC {
         
         
         export namespace C {
-            export type CreateGraphvizGenerator = () => g_main.ASYNC.I.Main
+            export type CreateGraphvizGenerator = {
+                'construct': () => g_main.ASYNC.I.Main
+            }
         }
         
         
         export namespace C {
-            export type CreateWorkspaceValidator = () => g_main.ASYNC.I.Main
+            export type CreateWorkspaceValidator = {
+                'construct': () => g_main.ASYNC.I.Main
+            }
         }
     }
 }
